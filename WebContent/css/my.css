@@ -1,0 +1,321 @@
+﻿.mask{
+	
+	position:fixed;
+    top: 0px;
+    background-color: #777;
+    z-index: 1002;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+
+.select_table{
+	
+	width:90%;
+	margin:0 auto;
+	border:2px solid white;
+	margin-bottom:30px;
+}
+input[type=search]{
+	
+	background: none repeat scroll 0 0 #fff;
+	border-radius: 30px;
+	color: #000;
+	display: inline;
+	font-size: 15px;
+	margin-top:5px;
+	height: 35px;
+	padding: 15px;
+	width: 60%;
+	border: 1px solid #ccc;
+			  
+}
+
+#InOrOut{
+	overflow: hidden;
+	position:relative;
+	left :0px;
+	bottom:20px;
+	top:0px;
+	padding-top:20px;
+	padding-bottom:50px;
+	background-color:#F7F7F7;
+}
+/**/
+
+.ellipsis{
+	position:relative;
+	z-index: 1002;
+	top:5px;
+	overflow:hidden;
+	width:250px;
+}
+
+#div_left{
+	width:800px;
+	height:400px;
+	z-index: 2000;
+	background-color:white;
+	
+}
+#div_right{
+	position:absolute;
+	left:25%;
+	top:35px;
+	width:72%;
+
+}
+
+#sTable{
+	margin:20px;
+}
+.fl{
+	width:400px; 
+	height:400px; 
+	border:1px solid #dcdcdc; 
+	background:#fff; 
+	box-shadow:rgba(0,0,0,.1) 0 5px 5px
+	}
+/**/
+
+#INconfirm{
+	background-color:#FAFAFA;
+	position:fixed;
+	top:200px;
+	margin-left:30%;/*修改 修改这一行*/
+	z-index: 3000;
+	width:600px;/*修改 添加这一行*/
+}
+#INconfirm>table{
+	margin:20px;
+}
+
+#OUTconfirm{
+	background-color:#FAFAFA;
+	position:fixed;
+	top:200px;
+	margin-left:30%;/*修改 修改这一行*/
+	z-index: 3000;
+	width:600px;/*修改 添加这一行*/
+}
+#OUTconfirm>table{
+	margin:20px;
+}
+#SELEconfirm{
+	background-color:#FAFAFA;
+	position:fixed;
+	top:200px;
+	margin-left:30%;/*修改 修改这一行*/
+	z-index: 3000;
+	border:1px solid black;/*修改 删除这一行*/
+	width:600px;/*修改 添加这一行*/
+}
+#SELEconfirm>table{
+	margin:20px;
+}
+.bottom_right{
+	float:left;
+	margin-left:19px;
+	width:50%;
+}
+.radio{
+	width:100%;
+	height:30px;
+}
+.radio_left{
+	float:left;
+}
+.radio_right{
+	float:left;
+}
+.select{
+	width:100%;
+	height:50px;
+}
+.select select{
+	float:left;
+	margin-right:3px;
+}
+.addAddress{
+	width:100%;
+	
+}
+.address{
+	width:100%;
+	height:50px;	
+}
+.storeAddress_text{
+	margin-top:7px;
+	margin-right:5px;
+	float:left;
+}
+.div_btn{
+	width:100%;
+	height:50px;
+}
+
+
+.operate_border{
+	background-color:#FAFAFA;
+	position:fixed;
+	top:100px;
+	margin-left:30%;
+	z-index: 3000;
+	border:1px solid black;	
+}
+.operate_code{
+	margin:20px;
+}
+.op_bottom{
+	height:35px;
+	padding-left:85%;
+}
+
+.addsp{
+	background-color:#FAFAFA;
+	position:fixed;
+	top:200px;
+	margin-left:20%;
+	z-index: 3000;
+	border:1px solid black;	
+}
+.addsp_in{
+	margin:20px;
+}
+
+.inputnum
+{
+	float:left;
+	padding-top:7px;
+	padding-left:10px;
+	margin-right:7px;
+}
+
+.cover {       
+            position: absolute; top: 0px;  
+            background-color: #777;     
+            z-index: 2000; left: 0px; 
+			width:100%;height:100%;   
+			background: rgba(0, 0, 0, 0.5);		
+            display:block;
+			right:0px;
+			bottom:0px;
+			
+       }
+	   
+/*修改 添加这个类*/
+.myborder{
+	 border:1px solid #dcdcdc;
+	 background:#fff; 
+	 box-shadow:rgba(0,0,0,.1) 0 5px 5px;
+}
+/*修改 添加这个类*/
+.myTcBorder{
+	 border:1px solid #dcdcdc;
+	 background:#fff; 
+	 box-shadow: 5px 5px 5px #3C3C3C;
+}
+/*修改2 添加下面这些样式*/	
+.gw_num{
+	border: 1px solid #dbdbdb;
+	width: 80%;
+	line-height: 26px;
+	overflow: hidden;
+	}
+.gw_num em{
+	display: block;
+	height: 26px;
+	width: 15%;
+	float: left;
+	color: #7A7979;
+	border-right: 1px solid #dbdbdb;
+	text-align: center;
+	cursor: pointer;
+	}
+.gw_num .num{
+	display: block;
+	float: left;
+	text-align: center;
+	width: 70%;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 24px;
+	border: 0;
+	}
+.gw_num em.add{
+	float: right;
+	border-right: 0;
+	border-left: 1px solid #dbdbdb;
+	}
+	
+/*左侧导航*/
+
+#nav_side
+{
+	position:fixed;
+	z-index:5000;
+    top: 40%;
+    left: 0px;
+    display: block;
+}
+
+/*左侧导航  结束*/
+
+/*星星评分*/
+/* 星星点灯照亮我的家门 */
+.star_bg {
+    width: 120px; height: 20px;
+    background: url(../images/star.png) repeat-x;
+    position: relative;
+    overflow: hidden;
+}
+.star {
+    height: 100%; width: 24px;
+    line-height: 6em;
+    position: absolute;
+    z-index: 3;
+}
+.star:hover {    
+    background: url(../images/star.png) repeat-x 0 -20px!important;
+    left: 0; z-index: 2;
+}
+.star_1 { left: 0; }
+.star_2 { left: 24px; }
+.star_3 { left: 48px; }
+.star_4 { left: 72px; }
+.star_5 { left: 96px; }
+.star_1:hover { width: 24px; }
+.star_2:hover { width: 48px; }
+.star_3:hover { width: 72px; }
+.star_4:hover { width: 96px; }
+.star_5:hover { width: 120px; }
+
+label { 
+    display: block; _display:inline;
+    height: 100%; width: 100%;
+    cursor: pointer;
+}
+
+/* 幕后的英雄，单选按钮 */
+.score { position: absolute; clip: rect(0 0 0 0); }
+.score:checked + .star {    
+    background: url(../images/star.png) repeat-x 0 -20px;
+    left: 0; z-index: 1;
+}
+.score_1:checked ~ .star_1 { width: 24px; }
+.score_2:checked ~ .star_2 { width: 48px; }
+.score_3:checked ~ .star_3 { width: 72px; }
+.score_4:checked ~ .star_4 { width: 96px; }
+.score_5:checked ~ .star_5 { width: 120px; }
+
+.star_bg:hover .star {  background-image: none; }
+
+/* for IE6-IE8 JS 交互 */
+.star_checked {    
+    background: url(../images/star.png) repeat-x 0 -20px;
+    left: 0; z-index: 1;
+}
+/*星星评分（结束）*/

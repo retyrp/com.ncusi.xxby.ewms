@@ -1,0 +1,1517 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="" name="description" />
+    <meta content="webthemez" name="author" />
+    <title>管理中心</title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
+
+    <link href="assets/js/dataTables/jquery.dataTables.min.css" rel="stylesheet" />
+</head>
+
+<body onload="check_level()">
+    <div class="maskAll hidden">
+        <table style="margin:0 auto;margin-top:250px;border:2px solid white;padding:50px;width:300px;height:50px;padding:20px;">
+            <tr>
+                <td><input style="margin-left:20px;" type="password" placeholder="输入密码" id='lockpwd'></input>
+                </td>
+                <td><input type="button" value="确定" class="btn" onclick="unlock()"></input>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="wrapper">
+        <!--顶部导航栏-->
+        <nav style="z-index:3000;" class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <!-- 汉堡按钮-->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">侧边栏</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Manager.html"><strong><i class="icon fa fa-plane"></i>仓库管理员</strong></a>
+
+                <div id="sideNav" href="">
+                    <i class="fa fa-bars icon"></i>
+                </div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <div class="container">
+                        <input type="checkbox" id="radio" name="switch" onchange="swith_change()" class="hidden">
+                        <label for="radio" class="radio">
+							<span class="circle"></span>
+						</label>
+                    </div>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 1</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 2</strong>
+                                        <span class="pull-right text-muted">28% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" style="width: 28%">
+                                            <span class="sr-only">28% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 3</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong>Task 4</strong>
+                                        <span class="pull-right text-muted">85% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                            <span class="sr-only">85% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Tasks</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 min</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a onclick="logout()" href="#"><i class="fa fa-user fa-fw"></i> 注销</a>
+                        </li>
+
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+
+        <!--管理员登录-->
+        <div id="adm_login" class="adm_login hidden">
+            <div style="width:30%;position:absolute;margin-left:35%;margin-top:15%;border:2px solid white; padding:20px;">
+                <table style="width:100%;height:100px;">
+                    <tr>
+                        <td style="color:white;">用户名:<input id="username" style="width:70%;display:inline;" type="text" class="form-control "></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td style="color:white;">密&nbsp;&nbsp;&nbsp;码:<input id="password" style="width:70%;display:inline;" type="password" class="form-control "></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td><input style="width:20%; margin-left:35%;" type="button" value="登录" onclick="login()"></input>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!--侧边导航栏-->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li onclick="page_change('info')" class="level_1">
+                        <a id="page_info_nav" class="active-menu"><i class="fa fa-dashboard"></i> 个人信息</a>
+                    </li>
+                    <li onclick="page_change('store_task')" class="level_2 hidden">
+                        <a id="page_store_task_nav"><i class="fa fa-dashboard"></i> 库存任务</a>
+                    </li>
+
+                    <li onclick="page_change('InOrOut')" class="level_1">
+                        <a id="page_InOrOut_nav"><i class="fa fa-desktop"></i> 出/入库操作</a>
+                    </li>
+                    <li onclick="page_change('worker_info')" class="level_3 hidden">
+                        <a id="page_worker_info_nav"><i class="fa fa-desktop"></i> 员工信息管理</a>
+                    </li>
+                    <li onclick="page_change('stock_part')" class="level_2">
+                        <a id="page_stock_part_nav" onclick='checkstore()'><i class="fa fa-desktop"></i> 库存盘点</a>
+                    </li>
+                    <li class="level_2 hidden">
+                        <a><i class="fa fa-sitemap"></i> 移库<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li onclick="page_change('apply_move')" class="level_2 hidden">
+                                <a id="page_apply_move_nav" onclick="InputOrOutput()">申请移库</a>
+                            </li>
+                            <li onclick="page_change('select_move')" class="level_3 hidden">
+                                <a id="page_select_move_nav">移库查询</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li onclick="page_change('store_manager')" class="level_3 hidden">
+                        <a id="page_store_manager_nav"><i class="fa fa-desktop"></i> 仓库管理</a>
+                    </li>
+                    <li onclick="page_change('goods_manager')" class="level_3 hidden">
+                        <a id="page_goods_manager_nav"><i class="fa fa-desktop"></i> 商品管理</a>
+                    </li>
+                    <li onclick="page_change('operate_task')" class="level_3 hidden">
+                        <a id="page_operate_task_nav"><i class="fa fa-desktop"></i> 操作日志</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!--第一页 库存任务-->
+        <div id="page_store_task" class="page-wrapper " style="display:none;">
+            <div class="header">
+                <h1 class="page-header">
+                    库存任务 <small>欢迎 bai_lu</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a onclick="show_store_add()" href="#store_add">请点击表格进行操作</a></li>
+                </ol>
+
+            </div>
+            <div id="store_task" class="page-inner">
+                <!--库存任务表-->
+                <div class="panel panel-default ">
+                    <div style="margin-left:10px;">
+                        <input style="width:70%;display:inline;" type="password" class="form-control" placeholder="输入名称/编号 查询"></input>
+                        <input onclick="store_task_select()" type="button" class="btn btn-default" value="查询"></input>
+                    </div>
+                    <hr>
+                    <table id="store_task_table" style="width:95%;" id="sTable" class="store_task table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>流水号</td>
+                                <td>名称</td>
+                                <td>仓库编号</td>
+                                <td>价格</td>
+                                <td>组</td>
+                                <td>数量</td>
+                                <td>仓库</td>
+                                <td>编号</td>
+                                <td>备注</td>
+                                <td>状态</td>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有
+                    <p></p>
+                </footer>
+            </div>
+
+            <!--库存任务 弹出框-->
+            <div id="store_task_confirm" class=" myTcBorder hidden ">
+                <!--修改  添加myTcBorder类-->
+                <h3 style="text-align:center;">库存任务</h3>
+                <!--修改 -->
+                <table style="width:100%">
+                    <!--修改 添加 style="width:100%" -->
+                    <tr>
+                        <td>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <td>编号:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <td>价格:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <!--修改  改成商品组-->
+                        <td>数量:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <!--修改 添加&nbsp;-->
+                        <td>仓库:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>仓库编号:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <!--修改  改成商品组-->
+                        <td>备注:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <!--修改 添加&nbsp;-->
+                        <td>时间:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:<input style="width:70%;display:inline;" type="text" class="form-control"></td>
+                        <!--修改 添加hidden类-->
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-success" style="width:60px;height:35px; margin-left:25%" onclick="store_task_confirm_alter()">修改</a>
+                            <!--修改  修改 margin-left-->
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="store_task_confirm_cancel()">取消</a>
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="store_task_confirm_delete()">删除</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+        <!--第二页 出/入库页-->
+        <div id="page_InOrOut" class="page-wrapper" style="display:none">
+            <div class="header">
+                <h1 class="page-header">
+                    出/入库操作 <small>欢迎用户</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <input style="width:70%;display:inline;" type="password" class="form-control" placeholder="用户输入出库/入库码"></input>
+                    <a href="#inventory" onclick="show_inventory()" type="button" class="btn btn-default">提交</a>
+                </ol>
+
+            </div>
+            <div class="page-inner">
+                <!--用户提示-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">用户提示</div>
+                    <div class="panel-body">
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1、 出库/入库码是您出/入库的凭证，在出/入库之前请不要透露给他人。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2、 输入出/入库码后请马上提交</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">3、 我们的工作人员不会以任何形式向您索要出/入库码。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">4、 出库/入库码一旦使用，立马作废。 </div>
+
+                    </div>
+                </div>
+                <!--商品明细表-->
+                <div id="inventory" class="panel panel-default hidden" style="padding:40px;">
+                    <h3 style="text-align:center;margin-bottom:20px;">出/入库商品明细</h3>
+                    <hr>
+                    <table style="width:100%;" class="InOrOut  table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+
+
+                                <td>流水号</td>
+                                <td>名称</td>
+                                <td>仓库编号</td>
+                                <td>价格</td>
+                                <td>组</td>
+                                <td>数量</td>
+                                <td>仓库</td>
+                                <td>编号</td>
+                                <td>备注</td>
+                                <td>状态</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <hr>
+                    <div style="width:285px;margin:0 auto;margin-bottom:40px;">
+                        <input id="com_button" onclick="operate_complete()" class="btn btn-success" style="display:inline;" disabled="disabled" type="button" value="本次操作完成"></input>
+                        <input class="btn btn-success " onclick="operate_cancel()" style="display:inline;" type="button" value="取消本次操作"></input>
+                    </div>
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+        <!--第三页 员工信息管理页-->
+        <div id="page_worker_info" class="page-wrapper" style="display:none">
+            <div class="header">
+                <h1 class="page-header">
+                    员工信息管理 <small>
+				</h1>
+				<ol class="breadcrumb">
+				  <li><a onclick="show_worker_info_add()" href="#worker_info_add">添加员工</a></li>
+				  <li><a onclick="show_worker_info_delete()" href="#worker_info_delete">删除员工</a></li>
+				  <li><a onclick="show_worker_auth_alter()" href="#worker_auth_alter">修改权限</a></li>
+				</ol> 					
+			</div>
+            <div class="page-inner">
+				<!--注意事项-->
+				<div class="panel panel-default">
+					<div class="panel-heading">注意事项</div>
+						<div class="panel-body">
+							<div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1、 操作之前请核对仔细。</div>
+							<div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2、 不要随意添加/修改/删除，这样会影响到系统的正常运行</div>
+							<div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">3、 后台保留操作记录，一旦发现人为恶意更改，追究法律责任。</div>
+						</div>
+				</div>
+				<!--添加员工-->
+				<div id="worker_info_add" class="panel panel-default hidden" style="padding:60px 40px 40px 40px;">
+					<h3 style="text-align:center;margin-bottom:20px;">添加员工</h3>
+					<table id="worker_info" style="width:100%;margin:0 auto;" >
+						<tr >
+							<td>员&nbsp;&nbsp;工&nbsp;&nbsp;ID <input style="width:70%;display:inline;cursor:not-allowed;" readonly type="text" class="form-control" value="123"></input></td>
+							<td>员工姓名 <input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+							<td>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别 <input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+						</tr>
+						<tr style="height:20px;"></tr>
+						<tr>
+							<td>出生年月 <input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+							<td>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机 <input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+							<td>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱 <input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+						</tr>
+						<tr style="height:20px;"></tr>
+						<tr>
+							<td>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址 <input  style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+							<td>工&nbsp;&nbsp;资&nbsp;&nbsp;卡 <input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+							<td>所属仓库 <input style="width:70%;display:inline;"type="text" class="form-control"></input></td>
+						</tr>
+						<tr style="height:20px;"></tr>
+						<tr>
+							<td>星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级 <input style="width:70%;display:inline;cursor:not-allowed;" readonly type="text" class="form-control"></input></td>
+							<td>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注<input style="width:70%;display:inline;" type="text" class="form-control"></input></td>
+						</tr>
+						<tr style="height:20px;"></tr>
+						<tr> 
+							<td colspan="3">
+								<div  style="margin:0 auto;width:300px;" >
+								<input onclick="worker_info_add()"  type="button" class="btn btn-default" value="确认添加"></input> 
+								<input onclick="worker_info_cancel()" style="margin-left:20px;" type="button" class="btn btn-default" value="取消"></input>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!--删除员工-->
+				<div id="worker_info_delete" class="panel panel-default hidden" style="padding:60px 40px 40px 40px;" >
+					<h3 style="text-align:center;margin-bottom:20px;">删除员工</h3>
+					<div style="margin-left:10px;">
+						<input style="width:70%;display:inline;"  type="password" class="form-control" placeholder="输入员工姓名/员工编号 查询"></input>
+						<input onclick="worker_info_delete_select()" type="button" class="btn btn-default" value="查询"></input>
+					</div>
+		
+					<hr>
+					<table style="width:100%;" class="worker_info_delete  table table-striped table-hover table-bordered">
+						<thead>
+							<tr>
+								<td>员工ID</td>
+								<td>员工姓名</td>
+								<td>性别</td>
+								<td>出生年月</td>
+								<td>手机</td>
+								<td>邮箱</td>
+								<td>地址</td>
+								<td>所属仓库</td>
+								<td>星级</td>
+								<td>备注</td>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<!--修改权限-->
+				<div id="worker_auth_alter" class="panel panel-default hidden" style="padding:60px 40px 40px 40px;">
+					<h3  style="text-align:center;margin-bottom:20px;">修改权限</h3>
+					<div style="margin-left:10px;">
+						<input style="width:70%;display:inline;"  type="password" class="form-control" placeholder="输入员工姓名/员工编号 查询"></input>
+						<input onclick="worker_auth_alter_select()" type="button" class="btn btn-default" value="查询"></input>
+					</div>
+		
+					<hr>
+					<table id="worker_auth_alter_table" style="width:100%;" class="worker_auth_alter  table table-striped table-hover table-bordered">
+						<thead>
+							<tr>
+								<td>员工ID</td>
+								<td>员工姓名</td>
+								<td>性别</td>
+								<td>出生年月</td>
+								<td>手机</td>
+								<td>邮箱</td>
+								<td>地址</td>
+								<td>所属仓库</td>
+								<td>星级</td>
+								<td>备注</td>
+								<td>权限</td>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<!--版权所有 南昌大学-->
+				<footer>版权所有 @南昌大学<p></p></footer>
+            </div>
+        </div>
+		
+		<!--第三页 员工信息管理用到的弹出框-->
+		<!--员工删除弹出框-->	
+		<div id="worker_info_add_confirm" class=" myTcBorder hidden"><!--修改  添加myTcBorder类-->
+			<h3 style="text-align:center;">删除员工信息</h3><!--修改 -->
+			<table style="width:100%"><!--修改 添加 style="width:100%" -->
+				<tr>
+					<td>员工ID:<label class="badge" id='shanchuyuangong'></lable></td>
+					<td>员工姓名:<label class="badge"></lable></td>
+					<td>性别:<label class="badge"></lable></td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td>出生年月:</span><label class="badge"></lable></td><!--修改  改成商品组-->
+					<td>手机:<label class="badge"></lable></td><!--修改 添加&nbsp;-->
+					<td>邮箱:<label class="badge"></lable></td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td>地址：<label class="badge"></lable></td><!--修改  改成商品组-->
+					<td>所属仓库:<label class="badge"></lable></td><!--修改 添加&nbsp;-->
+					<td>星级:<label class="badge"></lable></td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td>备注<label class="badge"></lable></td><!--修改 添加hidden类-->
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td colspan="3">
+						<a class="btn btn-success" style="width:60px;height:35px; margin-left:35%" onclick="worker_info_delete_complete()">删除</a><!--修改 margin-left-->
+						<a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="worker_info_delete_cancel()" >取消</a>
+					<td>
+				</tr>
+			
+			</table>
+		</div>
+		<!--员工权限修改弹出框-->	
+		<div id="worker_auth_alter_confirm" class=" myTcBorder hidden"><!--修改  添加myTcBorder类-->
+			<h3 style="text-align:center;">员工权限修改</h3><!--修改 -->
+			<table style="width:100%"><!--修改 添加 style="width:100%" -->
+				<tr>
+					<td>员工ID:<label class="badge" id ='xiugaiyuangong'></lable></td>
+					<td>员工姓名:<label class="badge"></lable></td>
+					<td>性别:<label class="badge"></lable></td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td>出生年月:</span><label class="badge"></lable></td><!--修改  改成商品组-->
+					<td>手机:<label class="badge"></lable></td><!--修改 添加&nbsp;-->
+					<td>邮箱:<label class="badge"></lable></td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td>地址：<label class="badge"></lable></td><!--修改  改成商品组-->
+					<td>所属仓库:<label class="badge"></lable></td><!--修改 添加&nbsp;-->
+					<td>星级:<label class="badge"></lable></td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td>备注<label class="badge"></lable></td><!--修改 添加hidden类-->
+					<td>权限<input type="text"></input> </td>
+				</tr>
+				<tr style="height:20px;"></tr>
+				<tr>
+					<td colspan="3">
+						<a class="btn btn-success" style="width:60px;height:35px; margin-left:35%" onclick="worker_auth_alter_complete()">修改</a><!--修改 margin-left-->
+						<a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="worker_auth_alter_cancel()" >取消</a>
+					<td>
+				</tr>
+			
+			</table>
+		</div>
+
+
+		
+		<!--第四页 库存盘点页-->
+		<div id="page_stock_part" class="page-wrapper" style="display:none">
+			<div class="header"> 
+                        <h1 class="page-header">
+                            库存盘点 <small>欢迎 bai_lu</small>
+                </h1>
+
+            </div>
+            <div class="page-inner">
+                <div class="panel panel-default">
+                    <table style="width:95%;" class="stock_part table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>商品名</td>
+                                <td>商品编号</td>
+                                <td>价格</td>
+                                <td>商品组</td>
+                                <td>数量</td>
+                                <td>备注</td>
+                                <td>商品仓库编号</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <hr>
+                    <div style="width:285px;margin:0 auto;margin-bottom:40px;">
+                        <input id="com_button2" onclick="operate_complete()" class="btn btn-success" style="display:inline;" disabled="disabled" type="button" value="本次操作完成"></input>
+                        <input class="btn btn-success " onclick="operate_cancel()" style="display:inline;" type="button" value="取消本次操作"></input>
+                    </div>
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+
+        <!--第五页 移库操作（1 申请移库）-->
+        <div id="page_apply_move" class="page-wrapper" style="display:none">
+            <div class="header">
+                <h1 class="page-header">
+                    申请移库 <small>欢迎 bai_lu</small>
+                </h1>
+            </div>
+            <div class="page-inner">
+                <!--申请移库-->
+                <div class="panel panel-default">
+
+                    <div style="width:95%;margin:0 auto;border: 1px solid #ccc;padding:10px;">
+                        <!--功能  出/入库 左-->
+                        <div onmouseenter="showCover()" onmouseleave="disCover()" style="overflow-x:hidden;overflow-y:auto;width:230px;height:480px;" class="myborder ellipsis ">
+
+
+                            <div id="div_left" style="">
+                                <!--修改2  添加下面这2行-->
+                                <span style="float:left; font-size:20px;margin-top:4px;">所选货品</span>
+                                <!--修改2  添加下面这一行-->
+                                <a class="glyphicon glyphicon-arrow-left" style="margin-right:10%;float:right;color:green;text-decoration:none;width:30px;z-index:4000;font-size:50px;" title="收起展开"></a>
+
+                                <table style="width:95%;" id="sTable" class="myTableSele table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>编号</td>
+                                            <td>名称</td>
+                                            <td>自订标识</td>
+                                            <td>商品组</td>
+                                            <td>数量</td>
+                                            <td>用户</td>
+                                            <td>操作</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <hr>
+                                <div class="panel panel-default" style="float:left;width:45%;margin-left:20px;">
+                                    <div class="panel-heading">注意事项</div>
+                                    <div class="panel-body">
+                                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1.请仔细检查上方操作数据。</div>
+                                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2.一旦操作不可更改</div>
+                                    </div>
+                                </div>
+                                <div class="bottom_right">
+                                    <div class="radio">
+                                        <div class="radio3" style="float:left;margin-right:30px;margin-left:20%;">
+                                            <input type="radio" id="radio1" name="inType" value="2" class="hidden">
+                                        </div>
+                                        <div class="radio3 hidden" style="float:left;" checked>
+                                            <input type="radio" id="radio2" name="inType" value="1">
+                                            <label for="radio2" checked>
+												不需要
+											</label>
+                                        </div>
+                                    </div>
+                                    <div class="userAddress address hidden">
+                                        <div class="storeAddress_text">用户地址</div>
+                                        <select class=" form form-control" style="width:250px;display:inline;">
+												<option value="">地址1</option>
+												<option value="">地址2</option>
+											</select>
+                                        <div onclick="showAddAddress()" class="glyphicon glyphicon-plus "></div>
+                                    </div>
+                                    <div class="addAddress hidden">
+                                        <div class="select">
+                                            <div class="storeAddress_text">省</div>
+                                            <select class="prov form form-control" style="width:90px" id="prov5"></select>
+                                            <div class="storeAddress_text">市</div>
+                                            <select class="city form form-control" style="width:90px" id="city5"></select>
+                                            <div class="storeAddress_text">县、区</div>
+                                            <select class="dist form form-control" style="width:90px" id="area5"></select>
+                                        </div>
+                                        <div class="address">
+                                            <div class="storeAddress_text">详细地址</div>
+                                            <input oninput="check_input()" id="need_check" class="form-control detailAds" style="width:200px;display:inline;" type="text"></input>
+                                            <input type="button" id="need_change_button" disabled="disabled" class="btn btn-success" value="添加地址"></input>
+                                        </div>
+                                    </div>
+                                    <label>请选择对象仓库
+											</label>
+                                    <div id="city_5">
+                                        <div class="select">
+                                            <div class="storeAddress_text">省</div>
+                                            <select class="prov form form-control" style="width:90px" id="prov6"></select>
+                                            <div class="storeAddress_text">市</div>
+                                            <select class="city form form-control" style="width:90px" id="city6"></select>
+                                            <div class="storeAddress_text">县、区</div>
+                                            <select class="dist form form-control" style="width:90px" id="area6" onchange="addressWarehouse();"></select>
+                                        </div>
+                                        <div class="address">
+                                            <div class="storeAddress_text">仓库地址</div>
+                                            <select class="dist form form-control" style="width:300px" id="warehouseArea">
+												<option value="">地址1</option>
+												<option value="">地址2</option>
+											</select>
+                                        </div>
+                                    </div>
+                                    <div class="div_btn">
+                                        <input type="button" value="确认" class="btn btn-success" style="width:60px;height:35px; margin-left:25%" onclick="submitForm()"></input>
+                                        <input type="button" value="取消" class="btn btn-danger" style="width:60px;height:35px; margin-left:50px;" onclick=""></input>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!--遮罩层-->
+                            <div class="cover hidden">
+                                <div style="margin:0 auto;width:200px;margin-top:100px;color:white;font-size:15px;border:2px solid white;z-index:1003"><span style="text-align:center;">双击展开<br>再次双击收缩<br><input onclick="is_checked()" type="checkbox" id="checked" name="checkbox1"  value="checkbox"> 不再提示</span></div>
+                            </div>
+
+                        </div>
+
+                        <!--功能  出/入库 右-->
+                        <div id="div_right" class="myborder">
+                            <h3>详细信息(单击列表以添加移库)</h3>
+                            <div>
+                                <table style="width:100%" class="myTableInfo table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>编号</td>
+                                            <td>名称</td>
+                                            <td>自订标识</td>
+                                            <td>商品组</td>
+                                            <td>数量</td>
+                                            <td>用户</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有 @南昌大学
+                    <p></p>
+                </footer>
+            </div>
+
+
+            <!--用到的弹出框-->
+            <div class="mask hidden"></div>
+            <!--遮罩-->
+            <!--入库弹出框-->
+            <div id="INconfirm" class="hidden myTcBorder ">
+                <!--修改  添加myTcBorder类-->
+                <h3 style="text-align:center;">移库</h3>
+                <!--修改 -->
+                <table style="width:100%">
+                    <!--修改 添加 style="width:100%" -->
+                    <tr>
+                        <td>编号:<label class="badge">##</lable></td>
+							<td>名称:<label class="badge">##</lable></td>
+							<td>用户自订编号:<label class="badge">###</lable></td>
+						</tr>
+						<tr style="height:20px;"></tr>
+						<tr>
+							<td><span style="width:100px;">商品组:</span><label class="badge">##</lable></td><!--修改  改成商品组-->
+							<td>数量:<label class="badge">##</lable></td><!--修改 添加&nbsp;-->
+							<td>用户ID:<label class="badge">-</lable></td>
+						</tr>
+						<tr style="height:20px;"></tr>
+						<tr >
+							<!--修改 添加onchange（）事件---->
+							<td colspan="3"><label class="inputnum" >操作数量</label>
+                            <!--修改2  删除input 添加下面的div-->
+                            <div class="gw_num">
+                                <em class="jian">-</em>
+                                <input type="text" value="1" class="num" />
+                                <em class="add">+</em>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-success" style="width:60px;height:35px; margin-left:35%" onclick="addSeleIn()">确定</a>
+                            <!--修改 margin-left-->
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disINconfirm()">取消</a>
+                            <td>
+                    </tr>
+
+                </table>
+            </div>
+            <!--出库弹出框-->
+            <div id="OUTconfirm" class="hidden myTcBorder">
+                <!--修改  添加myTcBorder类-->
+
+                <h3 style="text-align:center;">出库</h3>
+                <!--修改 -->
+                <table style="width:100%">
+                    <!--修改 添加 style="width:100%" -->
+                    <tr>
+                        <td>商品名 :<label class="badge">##</lable></td>
+						<td>商品编号:<label class="badge">##</lable></td>
+						<td>价格:<label class="badge"></lable></td>
+					</tr>
+					<tr style="height:20px;"></tr>
+					<tr>
+						<td>商品组:<label class="badge">##</lable></td><!--修改  改成商品组-->
+						<td>规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<label class="badge">##</lable></td><!--修改 添加&nbsp;-->
+						<td>备注:<label class="badge">-</lable></td>
+						<td class="hidden">商品仓库编号：<label class="badge">-</lable></td><!--修改 添加hidden类-->
+					</tr>
+					<tr style="height:20px;"></tr>
+					<tr >
+						<!--修改 添加 onchange事件-->
+						<td colspan="3"><label class="inputnum" >数量</label>
+                            <!--修改2  删除input 添加下面的div-->
+                            <div class="gw_num">
+                                <em class="jian">-</em>
+                                <input type="text" value="1" class="num" />
+                                <em class="add">+</em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-success" style="width:60px;height:35px; margin-left:35%" onclick="addSeleOut()">确定</a>
+                            <!--修改 margin-left-->
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disOUTconfirm()">取消</a>
+                    </tr>
+                </table>
+            </div>
+
+
+            <!--修改添加的商品信息-->
+            <div id="SELEconfirm" class=" hidden myTcBorder">
+                <!--修改  添加myTcBorder类-->
+                <table style="width:100%">
+                    <!--修改 添加 style="width:100%" -->
+                    <tr>
+                        <td>商品名 :<label class="badge">##</lable></td>
+						<td>商品编号:<label class="badge">##</lable></td>
+						<td>价格:<label class="badge">###</lable></td>
+					</tr>
+					<tr style="height:20px;"></tr>
+					<tr>
+						<td>商品组:<label class="badge">##</lable></td><!--修改  改成商品组-->
+						<td>规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<label class="badge">##</lable></td><!--修改 添加&nbsp;-->
+						<td>备注:<label class="badge">-</lable></td>
+						<td class="hidden">商品仓库编号：<label class="badge"> </lable></td><!--修改 添加hidden类-->
+					</tr>
+					<tr style="height:20px;"></tr>
+					<tr >
+						<!--修改  添加onchange（）事件-->
+						<td colspan="3"><label class="inputnum" >数量</label>
+                            <!--修改2  删除input 添加下面的div-->
+                            <div class="gw_num">
+                                <em class="jian">-</em>
+                                <input type="text" value="1" class="num" />
+                                <em class="add">+</em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-success" style="width:60px;height:35px; margin-left:25%" onclick="alterTableSele()">修改</a>
+                            <!--修改  修改 margin-left-->
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disSELEconfirm()">取消</a>
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="deleteRowSele()">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <!--操作码-->
+            <div class="operate_border hidden myTcBorder">
+                <!--修改  添加myTcBorder类-->
+                <div class="operate_code">
+                    <div class="op_top alert alert-info">
+                        你的申请已经提交
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            使用说明及注意事项
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-warning">一般会在三个工作日内完成审核</div>
+                            <div class="alert alert-warning">请勿重复申请</div>
+                            <div class="alert alert-warning">申请成功后，库存任务将会下达</div>
+                        </div>
+                    </div>
+                    <div class="op_bottom">
+                        <a class="btn btn-success" style="width:90px;height:35px;" onclick="disop()">我知道了</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--添加商品-->
+            <div class="addsp hidden myTcBorder">
+                <!--修改  添加myTcBorder类-->
+                <div class="addsp_in">
+                    <table>
+                        <tr>
+                            <td><label class="inputnum">商品名称</label><input class="form-control" type="text" style="width:170px;"></input>
+                            </td>
+                            <td><label class="inputnum">商品编号</label><input class="form-control" type="text" style="width:170px;"></input>
+                            </td>
+                            <td><label class="inputnum">价格</label><input class="form-control" type="text" style="width:170px;"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td><label class="inputnum">商品组</label>
+                                <select id="classID" style="width:50%" class="form-control input-xsmall">
+										<option value="0">日用</option>
+										<option value="1">生鲜</option>
+									</select>
+                            </td>
+                            <td><label class="inputnum">规格</label><input class="form-control" type="text" style="width:170px;"></input>
+                            </td>
+                            <td><label class="inputnum">数量</label><input class="form-control" type="text" style="width:170px;float:right;"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td><label class="inputnum">备注</label><input class="form-control" type="text" style="width:170px;"></input>
+                            </td>
+                            <td><label class="inputnum">商品仓库编号</label><input class="form-control" type="text" style="width:170px;"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td colspan="3">
+                                <a class="btn btn-success" style="width:60px;height:35px; margin-left:40%" onclick="add()">添加</a>
+                                <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disaddsp()">取消</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!--第五页 移库操作（2 移库查询）-->
+        <div id="page_select_move" class="page-wrapper" style="display:none">
+            <div class="panel panel-default">
+                <h3 style="text-align:center;margin-bottom:20px;">移库查询</h3>
+                <div style="margin-left:10px;">
+                    <input style="width:70%;display:inline;" type="password" class="form-control" placeholder="输入员工姓名/员工编号 查询"></input>
+                    <input onclick="select_move()" type="button" class="btn btn-default" value="查询"></input>
+                </div>
+
+                <hr>
+                <table style="width:100%;" class="select_move  table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <td>流水号</td>
+                            <td>申请人</td>
+                            <td>目标仓库</td>
+                            <td>源仓库</td>
+                            <td>时间</td>
+                            <td>货品编号</td>
+                            <td>数量</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+
+        <!--第六页 仓库管理-->
+        <div id="page_store_manager" class="page-wrapper" style="display:none">
+            <div class="header">
+                <h1 class="page-header">
+                    仓库管理 <small>欢迎 bai_lu</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a onclick="show_store_add()" href="#store_add">添加仓库</a></li>
+                    <li><a onclick="show_store_rud()" href="#store_rud">删除仓库</a></li>
+                    <li><a onclick="show_store_rud()" href="#store_rud">修改仓库信息</a></li>
+                    <li><a onclick="show_store_rud()" href="#store_rud">查询仓库信息</a></li>
+                </ol>
+
+            </div>
+            <div class="page-inner">
+                <!--提示信息-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">注意事项</div>
+                    <div class="panel-body">
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1、 操作之前请核对仔细，一旦更改不能还原。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2、 不要随意添加/修改/删除，这样会影响到系统的正常运行</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">3、 后台保留操作记录，一旦发现人为恶意更改，追究法律责任。</div>
+
+                    </div>
+                </div>
+                <!--添加仓库-->
+                <div id="store_add" class="panel panel-default hidden" style="padding:40px;">
+                    <h3 style="text-align:center;margin-bottom:40px;">仓库信息添加</h3>
+                    <table id="store_info" style="width:100%;margin:0 auto;">
+                        <tr>
+                            <td>编号 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>名称 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>地址 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>管理员ID <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>种类 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>区域 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td colspan="3">
+                                <div style="margin:0 auto;width:300px;">
+                                    <input onclick="store_add()" type="button" class="btn btn-default" value="确认添加"></input>
+                                    <input onclick="store_cancel()" style="margin-left:20px;" type="button" class="btn btn-default" value="取消"></input>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--仓库管理表-->
+                <div id="store_rud" class="panel panel-default hidden">
+                    <div style="margin-left:20px;margin-top:40px;">
+                        <input style="width:70%;display:inline;" type="text" class="form-control form-control-warehouse-search" placeholder="输入员工姓名/员工编号 查询"></input>
+                        <input onclick="store_manager_select()" type="button" class="btn btn-default" value="查询"></input>
+                    </div>
+                    <hr>
+                    <table style="width:95%;" id="store_manager_info" class="store_manager table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>编号</td>
+                                <td>名称</td>
+                                <td>地址</td>
+                                <td>管理员</td>
+                                <td>种类</td>
+                                <td>区域</td>
+                                <td>状态</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有
+                    <p></p>
+                </footer>
+            </div>
+
+
+            <!--管理仓库信息-->
+            <div id="store_manager_confirm" class=" hidden myTcBorder">
+                <!--修改  添加myTcBorder类-->
+                <table style="width:100%">
+                    <!--修改 添加 style="width:100%" -->
+                    <tr>
+                        <td>编号:<input style="width:70%;display:inline;cursor:not-allowed" type="text" class="form-control" readonly value="123"></input>
+                        </td>
+                        <td>名称:<input style="width:70%;display:inline;" type="text" class="form-control" value="123"></input>
+                        </td>
+                        <td>地址:<input style="width:70%;display:inline;" type="text" class="form-control" value="123"></input>
+                        </td>
+                        <td>管理员ID:<input style="width:70%;display:inline;" type="text" class="form-control" value="123"></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>种类:<input style="width:70%;display:inline;" type="text" class="form-control" value="123"></input>
+                        </td>
+                        <!--修改  改成商品组-->
+                        <td>区域:<input style="width:70%;display:inline;" type="text" class="form-control" value="123"></input>
+                        </td>
+                        <!--修改 添加&nbsp;-->
+                        <td>状态:<input style="width:70%;display:inline;" type="text" class="form-control" value="123"></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-success" style="width:60px;height:35px; margin-left:25%;" onclick="store_manager_confirm_alter()">修改</a>
+                            <!--修改  修改 margin-left-->
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="store_manager_confirm_cancel()">取消</a>
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="store_manager_confirm_delete()">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!--第七页 商品管理-->
+        <div id="page_goods_manager" class="page-wrapper" style="display:none;">
+            <div class="header">
+                <h1 class="page-header">
+                    商品管理 <small>欢迎 bai_lu</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a onclick="show_goods_manager_add()" href="#goods_manager_add">添加商品组</a></li>
+                    <li><a onclick="show_goods_manager_rud()" href="#goods_manager_rud">删除商品组</a></li>
+                    <li><a onclick="show_goods_manager_rud()" href="#goods_manager_rud">修改商品组</a></li>
+                    <li><a onclick="show_goods_manager_rud()" href="#goods_manager_rud">查询商品组</a></li>
+                </ol>
+
+            </div>
+            <div class="page-inner">
+                <!--注意事项-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">注意事项</div>
+                    <div class="panel-body">
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1、 操作之前请核对仔细。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2、 不要随意添加/修改/删除，这样会影响到系统的正常运行</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">3、 后台保留操作记录，请按公司工作条例操作。</div>
+                    </div>
+                </div>
+                <!--添加商品组-->
+                <div id="goods_manager_add" class="panel panel-default hidden" style="padding:60px 40px 40px 40px;">
+                    <h3 style="text-align:center;margin-bottom:20px;">添加商品组</h3>
+                    <table id="worker_info" style="width:100%;margin:0 auto;">
+                        <tr>
+                            <td>序号<input style="width:70%;display:inline;cursor:not-allowed;" readonly type="text" class="form-control"></input>
+                            </td>
+                            <td>名称 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>价格（￥）<input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>描述<input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td colspan="3">
+                                <div style="margin:0 auto;width:300px;">
+                                    <input onclick="group_info_add()" type="button" class="btn btn-default" value="确认添加"></input>
+                                    <input onclick="group_info_cancel()" style="margin-left:20px;" type="button" class="btn btn-default" value="取消"></input>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--商品管理表-->
+                <div id="goods_manager_rud" class="panel panel-default hidden">
+
+                    <div style="margin-left:10px;">
+                        <input style="width:70%;display:inline;" type="password" class="form-control" placeholder="输入商品名称/商品编号 查询"></input>
+                        <input onclick="goods_manager_select()" type="button" class="btn btn-default" value="查询"></input>
+                    </div>
+
+                    <hr>
+                    <table id="goods_info" style="width:95%;" class="goods_manager  table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>序号</td>
+                                <td>名称</td>
+                                <td>价格（￥）</td>
+                                <td>描述</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有
+                    <p></p>
+                </footer>
+            </div>
+
+
+            <!--修改3 添加这一行-->
+
+            <!--管理商品信息-->
+            <div id="goods_manager_confirm" class="hidden myTcBorder">
+                <!--修改  添加myTcBorder类-->
+                <table style="width:100%">
+                    <!--修改 添加 style="width:100%" -->
+                    <tr>
+                        <td>组序号 :<input style="width:70%;display:inline;" type="text" class="form-control" id='form-control-group'></input>
+                        </td>
+                        <td>组名:<input style="width:70%;display:inline;" type="text" class="form-control form-control-group" id='form-control-group1'></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>价格:<input style="width:70%;display:inline;" type="text" class="form-control form-control-group" id='form-control-group2'></input>
+                        </td>
+                        <!--修改  改成商品组-->
+                        <td>描述:<input style="width:70%;display:inline;" type="text" class="form-control form-control-group" id='form-control-group3'></input>
+                        </td>
+                        <!--修改 添加&nbsp;-->
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btn-success" style="width:60px;height:35px; margin-left:25%;" onclick="goods_manager_confirm_alter()">修改</a>
+                            <!--修改  修改 margin-left-->
+                            <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="goods_manager_confirm_cancel()">取消</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!--第八页 操作日志-->
+        <div id="page_operate_task" class="page-wrapper " style="display:none;">
+            <div class="header">
+                <h1 class="page-header">
+                    操作日志 <small>欢迎 bai_lu</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a onclick="show_store_add()" href="#store_add">请点击表格进行操作</a></li>
+                </ol>
+
+            </div>
+            <div class="page-inner">
+
+
+                <!--操作日志表-->
+                <div id="operate_log" class="panel panel-default ">
+                    <div style="margin-left:10px;">
+                        <input style="width:70%;display:inline;" type="text" class="form-control" placeholder="输入操作时间/操作人ID 查询"></input>
+                        <input onclick="operate_log_select()" type="button" class="btn btn-default" value="查询"></input>
+                    </div>
+                    <hr>
+                    <table id="operate_log_table" style="width:95%;" class="operate_log table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>流水号</td>
+                                <td>操作人ID</td>
+                                <td>时间</td>
+                                <td>结果</td>
+                                <td>类型</td>
+                                <td>其它</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!--版权所有 南昌大学-->
+                <footer>版权所有 @南昌大学
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+        <!--第九页 个人信息页-->
+        <div id="page_info" class="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    个人信息管理 <small>欢迎 bai_lu</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a onclick="show_my_info()" href="#adm_info">我的信息</a></li>
+                    <li><a onclick="show_alter_pwd()" href="#alter_pwd">修改密码</a></li>
+                </ol>
+
+            </div>
+            <div id="page-inner">
+                <!--管理员守则-->
+                <div id="adm_rule" class="panel panel-default">
+                    <div class="panel-heading">仓库管理员工作守则</div>
+                    <div class="panel-body">
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1、 仓管人员应做好上班前准备工作，穿工衣裤，调整好工作状态。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2、 仓管人员应面带微笑、热情待人，做好服务质量工作。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">3、 各仓管人员应负责整理仓库物品的入仓、出仓、储存、保管、检验及帐务 报表等工作。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">4、 仓库同类物资实行先进先出的作业原则，并按此原则分别决定储存方式及 位置。 </div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">5、 除仓管人员和因业务工作需要的有关人员外，任何人未经许可，不得进入 仓库。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">6、 仓管员要认真做好仓库安全工作，做好防火、防潮工作，检查火灾危险隐 患，发现问题应及时汇报，并定期接受后勤部的安全检查和监督。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">7、 仓管人员对物品进、出仓，应当即办理手续，不得事后补办；应保证帐物 相符，经常核对，并得随时受单位主管或财务部稽核人员的抽点。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">8、 每月仓库应盘点一次，检查货的实存、货卡结存数、物资明细账余额三者 是否一致；</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">9、 仓管人员下班离开前，应巡视仓库门窗、电源、水源是否关闭，以确保仓 库的安全。</div>
+                        <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">10、仓管员应不断提高自身业务素质，提高工作效率。</div>
+                    </div>
+                </div>
+                <!--用户信息-->
+                <div id="adm_info" class="panel panel-default hidden" style="padding:40px;margin-bottom:100px;">
+                    <h3 style="text-align:center;margin-bottom:20px;">员工信息表</h3>
+                    <table style="width:100%;margin:0 auto;">
+                        <tr>
+                            <td>员&nbsp;&nbsp;工&nbsp;&nbsp;ID <input style="width:70%;display:inline;cursor:not-allowed" readonly type="text" class="form-control"></input>
+                            </td>
+                            <td>员工姓名 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>出生年月 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                            <td>工&nbsp;&nbsp;资&nbsp;&nbsp;卡 <input style="width:70%;display:inline;cursor:not-allowed;" readonly type="text" class="form-control"></input>
+                            </td>
+                            <td>所属仓库 <input style="width:70%;display:inline;cursor:not-allowed" readonly type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级 <input style="width:70%;display:inline;cursor:not-allowed" readonly type="text" class="form-control"></input>
+                            </td>
+                            <td>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注<input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td colspan="3">
+                                <div style="margin:0 auto;width:300px;">
+                                    <input onclick="my_info_alter()" type="button" class="btn btn-default" value="确认修改"></input>
+                                    <input onclick="my_info_cancel()" style="margin-left:20px;" type="button" class="btn btn-default" value="取消"></input>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--用户密码修改-->
+                <div id="alter_pwd" class="panel panel-default hidden" style="padding:40px;margin-bottom:100px;">
+                    <h3 style="text-align:center;margin-bottom:20px;">修改密码</h3>
+                    <table style="width:300px; margin:0 auto;">
+                        <tr>
+                            <td>
+                                输入旧密码<input style="width:70%;display:inline;" type="password" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>
+                                输入新密码<input style="width:70%;display:inline;" type="password" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>
+                                再&nbsp;次&nbsp;输&nbsp;入&nbsp;<input style="width:70%;display:inline;" type="password" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr style="height:20px;"></tr>
+                        <tr>
+                            <td>
+                                <div style="margin:0 auto;width:170px;">
+                                    <input onclick="my_info_pwd_alter()" type="button" class="btn btn-default" value="确认修改"></input>
+                                    <input onclick="my_info_pwd_cancel()" style="margin-left:20px;" type="button" class="btn btn-default" value="取消"></input>
+                                </div>
+                            </td>
+                            <tr>
+                    </table>
+                </div>
+                <!--如果修改了联系方式-->
+                <div id="if_connect_change_confirm" class="hidden myTcBorder">
+                    <!--修改  添加myTcBorder类-->
+                    <label style="font-size:20px;display:block;text-align:center;margin-top:20px;margin-bottom:20px;">您正在修改您的联系方式，我们需要进行验证</label>
+                    <div style=" margin:0 auto;width:400px;">
+                        <select onchange="fanshi()" style="width:105px;display:inline;" class="form-control">
+							<option>邮箱验证</option>
+							<option>手机验证</option>
+						</select>
+                        <input style="display:inline;width:180px;" type="text" readonly class="form-control"></input>
+                        <input style="width:90px;position:relative;top:-2px;" onclick="show_yanzhenma()" type="button" value="获取验证码" class="btn btn-default"></input>
+                    </div>
+                    <hr>
+                    <div id="input_yzm" class="hidden">
+                        <div style="width:300px;margin:0 auto;">
+                            <input style="display:inline;width:220px;position:relative;top:2px; margin-right:10px;" type="text" placeholder="在这里输入验证码" class="form-control" id='checkcode'></input><input class="btn btn-default" type="button" value="确认"
+                                onclick='checkCode()'></input>
+                        </div>
+                        <label style="display:block;text-align:center;margin-bottom:20px;margin-top:20px;">
+							请在15分钟内输入您的验证码
+						</label>
+                    </div>
+                    <label onclick="dis_if_connect_change_confirm()" style="display:block; position:absolute;top:-5px;right:0px;font-size:20px;">×</label>
+                </div>
+
+
+
+                <!--版权所有 南昌大学-->
+                <footer>版权所有
+                    <p></p>
+                </footer>
+            </div>
+        </div>
+
+
+
+
+
+
+        <!--遮罩整界面-->
+        <div class="mask hidden"></div>
+    </div>
+    <div class="loading hidden"><img style="opacity:0.7;width:200px;margin-left:45%;margin-top:30%;" src="img/img_individual_homepage/loading.gif"></div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+
+
+
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+    <!---->
+    <script src="assets/js/new.js"></script>
+    <!--dataTables-->
+    <script src="assets/js/dataTables/jquery.dataTables.min.js"></script>
+
+    <!--下拉列表的级联-->
+    <script src="assets/js/city2.js"></script>
+    <script src="assets/js/citySelect2.js"></script>
+
+    <script src="assets/js/jquery.smooth-scroll.js"></script>
+    <!--下拉列表的级联-->
+    <script>
+        var selectVa2 = new CitySelect({
+            data: data,
+            provId: "#prov5",
+            cityId: '#city5',
+            areaId: '#area5',
+            isSelect: false
+        });
+
+        var selectVa3 = new CitySelect({
+            data: data,
+            provId: "#prov6",
+            cityId: '#city6',
+            areaId: '#area6',
+            isSelect: false
+        });
+
+        function check_level() {
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>用户登录</title>
+    <link rel="stylesheet" type="text/css" href="css/css_login/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/css_login/login.css" />
+    <link rel="stylesheet" type="text/css" href="css/css_login/red.css" />
+
+    <script src="js/js_login/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/js_login/login.js"></script>
+</head>
+
+<body>
+    <div class="login clearfix">
+        <div class="container clearfix">
+            <div class="benefits fl">
+                <h2>电子仓储系统介绍</h2>
+                <p>提供优质的仓库存储服务，保证货物的安全；</p>
+                <p>老用户优先体验和试用新服务，享受各种市场推广、客户回馈等特惠；</p>
+                <p>更多、更方便的免费服务选择，用户专属免费增值服务 ;</p>
+                <p>电子仓储服务，快速准确的货物核对；</p>
+                <p>存货物、选用服务均可获积分，更多丰富礼品等您拿！</p>
+                <h3>
+                    <div class="goRegistNow">现在就去登录！</div>
+                </h3>
+            </div>
+            <div class="login_box fr">
+                <ul class="login_tab">
+                    <li id="person1" class="current">个人用户登录</li>
+                    <li id="company1">企业用户登录</li>
+                </ul>
+                <!-- 企业登录div-->
+                <div class="tabLogin " id="company" style="display:none">
+                    <ul class="clearfix">
+                        <li>
+                            <dl>
+                                <dt>登录方式</dt>
+                                <dd class="login_manner_tab">
+                                    <div class="manner_tab1 chk-radio chk-checked"><span></span></div><span class="mr20"> 密码登录</span>
+                                    <div class="manner_tab2 chk-radio"><span></span></div><span> 手机验证登录</span>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <!-- 密码登录 -->
+                    <ul class="login_manner1 clearfix">
+                        <form id="companyUserLoginForm" method="post" action="">
+                            <li>
+                                <dl>
+                                    <dt>账号</dt>
+                                    <dd>
+                                        <input type="text" id="comUsername" name="comUsername" maxlength="500" placeholder="请输入用户名">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>密码</dt>
+                                    <dd>
+                                        <input type="password" id="comPassword" name="comPassword" placeholder="请输入用户密码" maxlength="32">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li style="display:none" id="comVerifyCodeDiv">
+                                <dl>
+                                    <dt>验证码</dt>
+                                    <dd>
+                                        <input type="text" id="comVerifyCode" name="comVerifyCode" value="" tabindex="3" maxlength="4" class="input_short" style="margin-right:10px;" placeholder="请输入验证码">
+                                        <img class="yzm" width="145" height="32" name="imgCode" id="cImgCode" src="#" onclick="">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="short">
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd>
+                                        <div class="chk-checkbox" id="comRemember"><span></span></div> <label>记住我</label>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd><a class="btn red" id="companyUserLoginBtn" href="#">登录</a></dd>
+                                </dl>
+                            </li>
+                        </form>
+                    </ul>
+                    <!-- 手机验证登录 -->
+                    <ul class="login_manner2 clearfix" style="display:none">
+                        <form id="companyUserCodeLoginForm" method="post" action="">
+                            <li>
+                                <dl>
+                                    <dt>手机号</dt>
+                                    <dd>
+                                        <input type="text" placeholder="请输入手机号" id="comMobile" name="username" maxlength="11">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>验证码</dt>
+                                    <dd>
+                                        <input id="mobVerifycode" name="vcode_login_verifycode" type="text" class="input_short" style="margin-right:10px;" maxlength="6" placeholder="请输入验证码">
+                                        <button class="bn_md gdtGray" type="button" id="login_sendVerifyCode_mobile_mob">发送验证码</button>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="short hide">
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd>
+                                        <div class="chk-checkbox" id="comRemember2"><span></span></div> <label>记住我</label>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd><a class="btn red" id="companyUserCodeLoginBtn" href="#">登录</a></dd>
+                                </dl>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!-- 个人登录div-->
+                <div class="tabLogin" id="person" style="display:block">
+                    <div class="sourceTab">
+                        <ul class="clearfix">
+                            <li class="s">
+                                <dl>
+                                    <dt>登录方式</dt>
+                                    <dd class="login_manner_tab">
+                                        <div class="manner_tab1 chk-radio chk-checked" id="loginByPw"><span></span></div><span class="mr20"> 密码登录</span>
+                                        <div class="manner_tab2 chk-radio" id="loginByMobile"><span></span></div><span> 手机验证登录</span>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                        <!-- 密码登录 -->
+                        <form id="singleloginForm" action="" method="post">
+                            <ul class="login_manner1 clearfix">
+                                <li class="m">
+                                    <dl>
+                                        <dt>账号</dt>
+                                        <dd>
+                                            <input type="text" class="sfExIpt" placeholder="请输入手机号/邮箱/用户名" size="20" id="username" maxlength="500" tabindex="1" value="">
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="m">
+                                    <dl>
+                                        <dt>密码</dt>
+                                        <dd>
+                                            <input type="password" class="sfExIpt" placeholder="请输入用户密码" name="password" size="20" id="password" maxlength="16" tabindex="2" value="">
+                                        </dd>
+                                    </dl>
+                                </li>
+
+                                <li style="display:block" id="verifyCodeDiv">
+                                    <dl>
+                                        <dt>验证码</dt>
+                                        <dd>
+                                            <input type="text" id="verifyCode" name="verifyCode" value="" maxlength="4" class="input_short sfExIpt" style="margin-right:10px;" placeholder="请输入验证码">
+                                            <img class="yzm" width="145" height="32" name="imgCode" id="vimage" src="Image.do" onclick="ctrl()">
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dt>&nbsp;</dt>
+                                        <dd>
+                                            <a class="btn red" href="#" onclick="login()">登录</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                            <div>
+                            </div>
+                        </form>
+                        <!-- 手机验证登录 -->
+                        <form id="verifycodeloginForm" method="post" name="verifycodeloginForm" action="">
+                            <ul class="login_manner2 clearfix" style="display: none">
+                                <li>
+                                    <dl>
+                                        <dt>手机号</dt>
+                                        <dd>
+                                            <input type="text" class="expMobileLogin" placeholder="请输入手机号" maxlength="11" name="vcode_login_username" size="20" id="vcode_login_username" tabindex="5">
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dt>验证码</dt>
+                                        <dd>
+                                            <input type="hidden" id="sessionId">
+                                            <input type="text" class="input_short expMobileLogin" style="margin-right:10px;" placeholder="请输入验证码" id="vcode_login_verifycode" name="vcode_login_verifycode" maxlength="6" value="" tabindex="6">
+                                            <button class="bn_md gdtGray" type="button" id="login_sendVerifyCode_mobile">发送验证码</button>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dt>&nbsp;</dt>
+                                        <dd><button id="verifycodeloginBtn" class="btn red">登录</button></dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer w">
+        &copy; 2017 电子仓储 版权所有
+    </div>
+</body>
+
+</html>

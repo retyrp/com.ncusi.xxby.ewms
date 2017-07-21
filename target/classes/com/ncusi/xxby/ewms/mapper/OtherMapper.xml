@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncusi.xxby.ewms.mapper.OtherMapper">
+	<!-- 评分记录 -->
+	<select id="searchMarkLog" parameterType="com.ncusi.xxby.ewms.model.other.MarkLog">
+		select T_Mark_Log as code,T_Mark as mark,T_Mark_Aim as
+		aimID,T_Mark_User as userID,T_Other as remark from t_mark_log
+		<where>
+			<if test="code!=null">T_Mark_Log=#{code}</if>
+			<if test="mark!=null">AND T_Mark=#{mark}</if>
+			<if test="aimID!=null">AND T_Mark_Aim=#{aimID}</if>
+			<if test="userID!=null">AND T_Mark_User=#{userID}</if>
+			<if test="remark!=null">AND T_Other=#{remark}</if>
+		</where>
+	</select>
+	<insert id="insertMarkLog" parameterType="com.ncusi.xxby.ewms.model.other.MarkLog">
+		insert into t_mark_log
+		values(#{code},#{mark},#{aimID},#{userID},#{remark})
+	</insert>
+	<delete id="deleteMarkLog" parameterType="com.ncusi.xxby.ewms.model.other.MarkLog">
+		delete from t_mark_log
+		where T_Mark_Log=#{code}
+	</delete>
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 操作码 -->
+	<select id="searchOp" parameterType="com.ncusi.xxby.ewms.model.other.Op"
+		resultType="com.ncusi.xxby.ewms.model.other.Op">
+		select T_OP_Code as code,T_OP_Address as address,T_OP_Cway as
+		way,T_OP_User_ID as userID,T_OP_State as state from t_op
+		<where>
+			<if test="code!=null">T_OP_Code=#{code}</if>
+			<if test="address!=null">AND T_OP_Address=#{address}</if>
+			<if test="way!=null">AND T_OP_Cway=#{way}</if>
+			<if test="userID!=null">AND T_OP_User_ID=#{userID}</if>
+			<if test="state!=null">AND T_OP_State=#{state}</if>
+		</where>
+	</select>
+	<insert id="insertOp" parameterType="com.ncusi.xxby.ewms.model.other.Op">
+		insert into t_op
+		values(#{code},#{address},#{way},#{userID},#{state})
+	</insert>
+	<delete id="deleteOp" parameterType="com.ncusi.xxby.ewms.model.other.Op">
+		delete from t_op where
+		T_OP_Code = #{code}
+	</delete>
+	<update id="updateOp" parameterType="com.ncusi.xxby.ewms.model.other.Op">
+		update t_op set
+		T_OP_Address=#{address},T_OP_Cway=#{way},T_OP_User_ID
+		=#{userID},T_OP_State=#{state} where T_OP_Code=#{code}
+	</update>
+	<!-- 订单 -->
+	<select id="searchOrder" parameterType="com.ncusi.xxby.ewms.model.other.Order"
+		resultType="com.ncusi.xxby.ewms.model.other.Order">
+		select T_Order_Code as code,T_Order_User as user,T_Order_Price as
+		price,T_Order_Date as date,T_Order_State as State from t_order
+		<where>
+			<if test="code!=null">T_Order_Code=#{code}</if>
+			<if test="user!=null">AND T_Order_User=#{user}</if>
+			<if test="price!=null">AND T_Order_Price=#{price}</if>
+			<if test="date!=null">AND T_Order_Date=#{date}</if>
+			<if test="State!=null">AND T_Order_State=#{State}</if>
+		</where>
+	</select>
+	<insert id="insertOrder" parameterType="com.ncusi.xxby.ewms.model.other.Order">
+		insert into t_order
+		values(#{code},#{user},#{price},#{date},#{State})
+	</insert>
+	<delete id="deleteOrder" parameterType="com.ncusi.xxby.ewms.model.other.Order">
+		delete from t_order where
+		T_Order_Code = #{code}
+	</delete>
+	<update id="updateOrder" parameterType="com.ncusi.xxby.ewms.model.other.Order">
+		update t_order set
+		T_Order_User =
+		#{user},T_Order_Price=#{price},T_Order_Date=#{date},T_Order_State
+		=#{State} where T_Order_Code =#{code}
+	</update>
+	<!-- 价格 -->
+	<select id="searchPrice" parameterType="com.ncusi.xxby.ewms.model.other.Price" resultType="com.ncusi.xxby.ewms.model.other.Price">
+		select T_Price_Code as code,T_Price_Name as name,T_Price_Price as
+		price,T_Price_Script as script from t_price
+		<where>
+			<if test="code!=0">T_Price_Code=#{code}</if>
+			<if test="name!=null">AND T_Price_Name like #{name}</if>
+			<if test="price!=null">AND T_Price_Price=#{price}</if>
+			<if test="script!=null">AND T_Price_Script=#{script}</if>
+		</where>
+	</select>
+	<insert id="insertPrice" parameterType="com.ncusi.xxby.ewms.model.other.Price">
+		insert into t_price
+		values(#{code},#{name},#{price},#{script})
+	</insert>
+	<delete id="deletePrice" parameterType="com.ncusi.xxby.ewms.model.other.Price">
+		delete from t_price where
+		T_Price_Code = #{code}
+	</delete>
+	<update id="updatePrice" parameterType="com.ncusi.xxby.ewms.model.other.Price">
+		update t_price set
+		T_Price_Name
+		=#{name},T_Price_Price=#{price},T_Price_Script=#{script}
+		where
+		T_Price_Code=#{code}
+	</update>
+	<!-- 临时操作码 -->
+	<select id="searchUserOCode" parameterType="com.ncusi.xxby.ewms.model.other.UserOCode"
+		resultType="com.ncusi.xxby.ewms.model.other.UserOCode">
+		select T_User_Ocode as oCode,T_Op_Code as opCode from t_user_ocode
+		<where>
+			<if test="oCode!=null">T_User_Ocode=#{oCode}</if>
+			<if test="opCode!=null">AND T_Op_Code=#{opCode}</if>
+		</where>
+	</select>
+	<insert id="insertUserOCode" parameterType="com.ncusi.xxby.ewms.model.other.UserOCode">
+		insert into
+		t_user_ocode values(#{oCode},#{opCode})
+	</insert>
+	<update id="updateUserOCode" parameterType="com.ncusi.xxby.ewms.model.other.UserOCode">
+		update t_user_ocode
+		set T_Op_Code=#{opCode} where T_User_Ocode=#{oCode}
+	</update>
+	<delete id="deleteUserOCode" parameterType="com.ncusi.xxby.ewms.model.other.UserOCode">
+		delete from
+		t_user_ocode where T_User_Ocode = #{oCode}
+	</delete>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncusi.xxby.ewms.mapper.ExpressMapper">
+	<!-- Auto -->
+	<select id="searchAuto" parameterType="com.ncusi.xxby.ewms.model.express.Auto"
+		resultType="com.ncusi.xxby.ewms.model.express.Auto">
+		select T_Auto_Op_Code as code,T_Auto_Express_Code as
+		eCode,T_Auto_Ocode as oCode,T_Auto_State as state from t_auto
+		<where>
+			<if test="code!=null">T_Auto_Op_Code = #{code}</if>
+			<if test="eCode!=null">AND T_Auto_Express_Code = #{eCode}</if>
+			<if test="oCode!=null">AND T_Auto_Ocode = #{oCode}</if>
+			<if test="state!=null">AND T_Auto_State = #{state}</if>
+		</where>
+	</select>
+	<insert id="insertAuto" parameterType="com.ncusi.xxby.ewms.model.express.Auto">
+		insert into t_auto
+		values(#{code},#{eCode},#{oCode},#{state})
+	</insert>
+	<update id="updateAuto" parameterType="com.ncusi.xxby.ewms.model.express.Auto">
+		update t_auto set
+		T_Auto_Express_Code=#{eCode},T_Auto_Ocode
+		=#{oCode},T_Auto_State=#{state}where T_Auto_Op_Code = #{code}
+	</update>
+	<delete id="deleteAuto" parameterType="com.ncusi.xxby.ewms.model.express.Auto">
+		delete from t_auto where
+		T_Auto_Op_Code = #{code}
+	</delete>
+	<!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 日志 -->
+	<select id="searchAutoLog" parameterType="com.ncusi.xxby.ewms.model.express.AutoLog"
+		resultType="com.ncusi.xxby.ewms.model.express.AutoLog">
+		select T_Auto_Op_MainKey as code,T_Auto_Op_Code as
+		opCode,T_Auto_Express_Code as eCode,T_Auto_Date as date from
+		t_auto_log
+		<where>
+			<if test="code!=null">T_Auto_Op_MainKey=#{code}</if>
+			<if test="opCode!=null">AND T_Auto_Op_Code=#{opCode}</if>
+			<if test="eCode!=null">AND T_Auto_Express_Code=#{eCode}</if>
+			<if test="date!=null">AND T_Auto_Date=#{date}</if>
+		</where>
+	</select>
+	<insert id="insertAutoLog" parameterType="com.ncusi.xxby.ewms.model.express.AutoLog">
+		insert into t_auto_log
+		values(#{code},#{opCode},#{eCode},#{date})
+	</insert>
+	<delete id="deleteAutoLog" parameterType="com.ncusi.xxby.ewms.model.express.AutoLog">
+		delete from t_auto_log
+		where T_Auto_Op_MainKey=#{code}
+	</delete>
+	<!-- 配送方 -->
+	<select id="searchExpress" parameterType="com.ncusi.xxby.ewms.model.express.Express"
+		resultType="com.ncusi.xxby.ewms.model.express.Express">
+		select T_Express_Code as code,T_Express_Name as name,T_Express_Phone
+		as phone,T_Express_Mail as mail,T_Express_State as state from
+		t_express
+		<where>
+			<if test="code!=null">T_Express_Code = #{code}</if>
+			<if test="name!=null">T_Express_Name = #{name}</if>
+			<if test="phone!=null">T_Express_Phone = #{phone}</if>
+			<if test="mail!=null">T_Express_Mail = #{mail}</if>
+			<if test="state!=null">T_Express_State = #{state}</if>
+		</where>
+	</select>
+	<insert id="insertExpress" parameterType="com.ncusi.xxby.ewms.model.express.Express">
+		insert into t_express
+		values(#{code},#{name},#{phone},#{mail},#{state})
+	</insert>
+	<delete id="deleteExpress" parameterType="com.ncusi.xxby.ewms.model.express.Express">
+		delete from t_express
+		where T_Express_Code=#{code}
+	</delete>
+	<update id="updateExpress" parameterType="com.ncusi.xxby.ewms.model.express.Express">
+		update t_express set
+		T_Express_Name=#{name},T_Express_Phone
+		=#{phone},T_Express_Mail=#{mail},T_Express_State=#{state} where
+		T_Express_Code=#{code}
+	</update>
+</mapper>

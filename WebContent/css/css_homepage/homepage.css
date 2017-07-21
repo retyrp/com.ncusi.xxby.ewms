@@ -1,0 +1,257 @@
+
+    
+#header {
+        width: 100%;
+        height: 46px;
+        background: #fff;
+        font-size: 15px;
+        margin-top:20px;
+    }
+    .logo{
+        float:left;
+    }
+    .mynav{
+        float:left;
+        position:relative;
+        left:10%;
+    }
+    .mynav_li {
+        float: left;
+        list-style: none;
+        margin-left: 50px;
+        border-bottom-color: red;
+        position: relative;
+    }
+    .mynav_li a {
+        text-decoration: none;
+        color:black;
+        padding-bottom:20px;
+    }
+    .mynav_li a:hover {
+        border-bottom: 2px solid #E13D4E;
+        color: #E13D4E;
+        text-decoration: none;
+    }
+    .hiden_li
+    {
+        margin-left:20px;
+        margin-bottom:20px;
+        margin-top:10px;
+    }
+    .phone{
+        float :right;
+    }
+    .phone li {
+        list-style: none;
+        float: left;
+        margin-right: 50px;
+    }
+    .phone a {
+        text-decoration: none;
+        color: black;
+        font-size: 15px;
+    }
+    .phone a:hover {
+        text-decoration: none;
+    }
+
+.nav-content {
+   position:absolute;
+   float:left;
+   width:200px;
+   height:200px;
+   top:45px;
+   left:-70px;
+   border:2px solid  #F1F1F1;
+   background-color:white;
+   z-index:2000;
+}
+/* */
+.title{
+    width:100%;
+    margin-bottom:30px;
+}
+.title h2{
+    margin-left :40%;
+    margin-bottom:30px;
+}
+.title span{
+    margin-left:39.5%;
+    font-size:18px;
+}
+
+
+
+
+
+.context {
+    width: 95%;
+    margin: 0 auto;
+    height: 600px;
+}
+.navImg {
+    color: black;
+}
+
+.navImg ul {
+    height: 60px;
+    padding :0;
+}
+
+.navImg ul li {
+    list-style: none;
+    width: 33%;
+ 
+    float: left;
+    height: 50px;
+    text-align: center;
+    border-bottom:2px solid #949494;
+}
+
+    .navImg ul li a {
+        width: 100%;
+        color: #949494;
+        font-size: 20px;
+        text-decoration: none;
+        padding-bottom: 20px;
+        display: block;
+        border-bottom: 2px solid #949494;
+    }
+
+
+.intro img {
+    width:100%;    
+} 
+
+
+.img {
+    float: left;
+    margin-right: 1%;
+}
+.detail {
+    height: 100px;
+    background-color: #F1F1F1;
+}
+.text_header {
+    padding-left: 10%;
+    padding-top: 2%;
+    font-weight: 600;
+    font-size: 20px;
+}
+.text_content{
+    padding-left:1%;
+    padding-top:2%;
+}
+
+
+/*footer */
+.footer1 {
+    border-top:5px solid #DC1E32;
+    background:black;
+    height:200px;
+}
+    .footer1 ul  {
+        float:left;
+        list-style: none;
+        margin-left:16%;
+        margin-top:20px;
+    }
+    .footer1 ul li {
+        font-size:16px;
+        font-weight:100;
+        color:white;
+        list-style :none;
+        text-align:center;
+    }
+    .footer1 ul .li_header{
+        font-weight:300;
+        font-size:18px;
+    }
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.banner {
+    width: 100%;
+    /*height: 560px;*/
+    /*background: black;*/
+    /*子绝父相*/
+    position: relative;
+    /*超出部分全部隐藏，解决横向滚动条*/
+    overflow: hidden;
+
+}
+
+    .banner ul {
+        position: absolute;
+    }
+
+        .banner ul li {
+            /*这个100%是相对于父盒子的（会把父盒子的宽度继承过来,如父盒子300%,这这里的100%就会相当于300%）*/
+            width: 100%;
+            height: 560px;
+            float: left;
+            background: no-repeat center center;
+        }
+    /*.banner ul li:nth-child(1){*/
+    /*background: url('./1.jpg') no-repeat center center;*/
+    /*}*/
+    /*.banner ul li:nth-child(2){*/
+    /*background: url('./2.jpg') no-repeat center center;*/
+    /*}*/
+    /*.banner ul li:nth-child(3){*/
+    /*background: url('./3.jpg') no-repeat center center;*/
+    /*}*/
+    .banner ol {
+        width: 80px;
+        height: 20px;
+        background: rgba(0,0,0,0.5);
+        position: absolute;
+        left: 50%;
+        /*margin-left: -40px;*/
+        bottom: 30px;
+        padding: 0 10px;
+        border-radius: 10px;
+    }
+
+        .banner ol li {
+            width: 10px;
+            height: 10px;
+            float: left;
+            margin: 5px 5px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .banner ol .current {
+            background: rgba(255,255,255,1);
+        }
+
+    .banner i {
+        width: 58px;
+        height: 120px;
+        position: absolute;
+        top: 50%;
+        margin-top: -60px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: none;
+    }
+
+    .banner .left {
+        left: 60px;
+        background: url('img/left_right.png') no-repeat 0 0px;
+    }
+
+    .banner .right {
+        right: 60px;
+        background: url('img/left_right.png') no-repeat 0px -120px;
+    }
+
+        .banner .left:hover, .banner .right:hover {
+            background-color: rgba(0, 0, 0, 0.31);
+        }

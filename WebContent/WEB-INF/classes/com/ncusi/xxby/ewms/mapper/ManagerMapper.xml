@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncusi.xxby.ewms.mapper.ManagerMapper">
+	<resultMap type="com.ncusi.xxby.ewms.model.manager.Manager"
+		id="login_manager">
+		<id column="ID" property="T_Manager_ID" />
+		<result column="password" property="T_Manager_Password" />
+		<result column="access" property="T_Manager_Password" />
+	</resultMap>
+	<select id="login_manager" parameterType="com.ncusi.xxby.ewms.model.manager.Manager"
+		resultMap="login_manager">
+		select * from t_manager_one where T_Manager_ID=#{ID} AND
+		T_Manager_Password=#{password}
+	</select>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.ncusi.xxby.ewms.model.manager.Manager">
+		insert into t_manager_one
+		values(#{ID},#{password},#{access})
+	</insert>
+	<!-- 查询 -->
+	<select id="search" parameterType="com.ncusi.xxby.ewms.model.manager.Manager"
+		resultType="com.ncusi.xxby.ewms.model.manager.Manager">
+		select T_Manager_ID as ID,T_Manager_Password as
+		password,T_Manager_Access from t_manager_one
+		<where>
+			<if test="ID!=null">T_Manager_ID=#{ID}</if>
+			<if test="password!=null">AND T_Manager_Password=#{password}</if>
+			<if test="access!=null">AND T_Manager_Access=#{access}</if>
+		</where>
+	</select>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="com.ncusi.xxby.ewms.model.manager.Manager">
+		delete from t_manager_one
+		where T_Manager_ID=#{ID}
+	</delete>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.ncusi.xxby.ewms.model.manager.Manager">
+		update t_manager_one set
+		T_Manager_Password=#{password},T_Manager_Access=#{access} where
+		T_Manager_ID=#{ID}
+	</update>
+
+	<!-- 添加信息 -->
+	<insert id="addInfo" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerInfo">
+		insert into t_manager_two
+		values(#{ID},#{name},#{sex},#{birth},#{phone},#{mail},#{address},#{credit},#{warehouseID},#{star},#{other})
+	</insert>
+
+	<!-- 查询信息 -->
+	<select id="searchInfo" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerInfo"
+		resultType="com.ncusi.xxby.ewms.model.manager.ManagerInfo">
+		select T_Manager_ID as ID,T_Manager_Name as name,T_Manager_Sex as
+		sex,T_Manager_Birth as birth,T_Manager_Phone as phone,T_Manager_Mail
+		as mail,T_Manager_Address as address,T_Manager_Credit as
+		credit,T_Manager_Store_ID as warehouseID,T_Manager_Star as
+		star,T_Manager_Other as other from t_manager_two
+		<where>
+			<if test="ID!=null">T_Manager_ID=#{ID}</if>
+			<if test="name!=null">AND T_Manager_Name=#{name}</if>
+			<if test="sex!=null">AND T_Manager_Sex=#{sex}</if>
+			<if test="birth!=null">AND T_Manager_Birth=#{birth}</if>
+			<if test="phone!=null">AND T_Manager_Phone=#{phone}</if>
+			<if test="mail!=null">AND T_Manager_Mail=#{mail}</if>
+			<if test="address!=null">AND T_Manager_Address=#{address}</if>
+			<if test="credit!=null">AND T_Manager_Credit=#{credit}</if>
+			<if test="warehouseID!=null">AND T_Manager_Store_ID=#{warehouseID}</if>
+			<if test="star!=null">AND T_Manager_Star=#{star}</if>
+			<if test="other!=null">AND T_Manager_Other=#{other}</if>
+		</where>
+	</select>
+
+	<!-- 更新信息 -->
+	<update id="updateInfo" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerInfo">
+		update t_manager_two set
+		T_Manager_Name = #{name},T_Manager_Sex =
+		#{sex},T_Manager_Birth =
+		#{birth},T_Manager_Phone =
+		#{phone},T_Manager_Mail =
+		#{mail},T_Manager_Address =
+		#{address},T_Manager_Credit =
+		#{credit},T_Manager_Store_ID =
+		#{warehouseID},T_Manager_Star =
+		#{star},T_Manager_Other = #{other}
+		where T_Manager_ID = #{ID}
+	</update>
+	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 操作日志 -->
+	<select id="searchManagerLog" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerLog"
+		resultType="com.ncusi.xxby.ewms.model.manager.ManagerLog">
+		select T_Log_Manager_Code as code,T_Log_Manager_ID as
+		managerID,T_Log_Manager_Date as date,T_Log_Manager_Results as
+		results,T_Log_Manager_Type as type,T_Log_Manager_Info as info from
+		t_log_manager
+		<where>
+			<if test="code!=null">T_Log_Manager_Code=#{code}</if>
+			<if test="managerID!=null">AND T_Log_Manager_ID=#{managerID}</if>
+			<if test="date!=null">AND T_Log_Manager_Date=#{date}</if>
+			<if test="results!=null">AND T_Log_Manager_Results=#{results}</if>
+			<if test="type!=null">AND T_Log_Manager_Type=#{type}</if>
+			<if test="info!=null">AND T_Log_Manager_Info=#{info}</if>
+		</where>
+	</select>
+	<insert id="insertManagerLog" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerLog">
+		insert into
+		t_log_manager
+		values(#{code},#{managerID},#{date},#{results},#{type},#{info})
+	</insert>
+	<delete id="deleteManagerLog" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerLog">
+		delete from
+		t_log_manager where T_Log_Manager_Code=#{code}
+	</delete>
+	<!-- 评分 -->
+	<select id="searchManagerMark" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerMark"
+		resultType="com.ncusi.xxby.ewms.model.manager.ManagerMark">
+		select T_Manager_ID as managerID,T_Star_1 as star1,T_Star_2 as
+		star2,T_Star_3 as star3,T_Star_4 as star4,T_Star_5 as
+		star5,T_Star_Results as result from t_manager_three
+		<where>
+			<if test="managerID!=null">T_Manager_ID=#{managerID}</if>
+			<if test="star1!=null">AND T_Star_1=#{star1}</if>
+			<if test="star2!=null">AND T_Star_2=#{star2}</if>
+			<if test="star3!=null">AND T_Star_3=#{star3}</if>
+			<if test="star4!=null">AND T_Star_4=#{star4}</if>
+			<if test="star5!=null">AND T_Star_5=#{star5}</if>
+			<if test="result!=null">AND T_Star_Results=#{result}</if>
+		</where>
+	</select>
+	<update id="updateManagerMark" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerMark">
+		update
+		t_manager_three set
+		T_Star_1=#{star1},T_Star_2=#{star2},T_Star_3=#{star3},T_Star_4=#{star4},T_Star_5=#{star5},T_Star_Results=#{result}
+		where T_Manager_ID=#{managerID}
+	</update>
+	<insert id="insertManagerMark" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerMark">
+		insert into
+		t_manager_three
+		values(#{managerID},#{star1},#{star2},#{star3},#{star4},#{star5},#{result})
+	</insert>
+	<delete id="deleteManagerMark" parameterType="com.ncusi.xxby.ewms.model.manager.ManagerMark">
+		delete from
+		t_manager_three where T_Manager_ID=#{managerID};
+	</delete>
+</mapper>

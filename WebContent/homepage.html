@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>首页</title>
+    <link href="css/css_homepage/homepage.css" rel='stylesheet' />
+    <link href="css/bootstrap3.2.0/css/bootstrap.css" rel="stylesheet" />
+    <script src="js/js_homepage/jquery-1.11.3.js" type="text/javascript"></script>
+    <script src="js/js_homepage/jquery-ui.min.js"></script>
+    <script src="js/js_homepage/homepage.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="header">
+		<div class="logo">
+			<img style="position:absolute; top:-10px;left:180px; width:150px;" src="img/img_homepage/logo1.png" />
+		</div>
+        <ul class="mynav">
+			<li class="mynav_li">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class="mynav_li"><a onmouseover="disNavAll()" class="nav_a" href="homepage.html">首页</a></li>
+            <li class="mynav_li">
+                <a onmouseover="showNav1()" onmouseleave="disNav1() " href="#" class="nav_a ">物流</a>
+                <div onmouseenter="cancel()"  onmouseleave="disNav1() " id="nav1" class="nav-content hidden">
+                    <ul>
+                        <li class="hiden_li">快递服务</li>
+                        <li class="hiden_li">冷运服务</li>
+                        <li class="hiden_li">仓库服务</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mynav_li">
+                <a onmouseover="showNav2()"  onmouseleave="disNav2()"href="#" class="nav_a">服务支持</a>
+                <div onmouseenter="cancel()" onmouseleave="disNav2()" id="nav2" class="nav-content hidden">
+                    <ul class="hiden_ul">
+                        <li class="hiden_li">货物查询</li>
+                        <li class="hiden_li">货物入库</li>
+                        <li class="hiden_li">费用查询n</li>
+                        <li class="hiden_li">历史纪录</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mynav_li">
+                <a onmouseover="disNavAll()" href="" class="a-t">关于我们</a>
+            </li>
+        </ul>
+
+        <ul class="phone">
+            <li><span class="p"></span><span>热线电话</span></li>
+            <li class="over-red">
+                <span class="u"></span>
+                <a href="login.html">登录</a>
+                <span class="line">|</span> 
+                <a href="register.html">注册</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="banner" >
+        <ul></ul>
+        <ol></ol>
+    </div>
+
+
+    <div class="context">
+        <div class="title">
+            <h2>电子仓储业务介绍</h2>
+            <span>基于物流，特色业务，数据分析</span>
+        </div>
+        <div class="navImg">
+            <ul>
+                <li><a onmousemove="select(1)">物流</a></li>
+                <li><a onmousemove="select(2)">特色业务</a></li>
+                <li><a onmousemove="select(3)">数据分析</a></li>
+            </ul>
+        </div>
+
+        <!--物流-->
+        <div id="intro1" class="intro">
+            
+            <div onmouseenter="change(1)" onmouseleave="change2(1)" style="width:49%;" class="img mask">
+                <div> <img src="img/img_homepage/circulation_1.jpg" /></div>
+                <div id="changeColor1" class="detail">
+                <div class="text_header">上门服务</div>
+                <div class="text_content">依托自有的丰富运力资源，满足客户自由化、多样化的上门需求。</div>
+                </div>
+            </div>
+
+            <div onmouseenter="change(2)" onmouseleave="change2(2)" style="width:49%;" class="img mask">
+                <div> <img src="img/img_homepage/circulation_2.jpg" /></div>
+                <div id="changeColor2" class="detail">
+                <div class="text_header">仓库管理</div>
+                <div class="text_content">派有专人进行管理和照看仓库，对仓库中的货物进行分类报管，并定期进行检查。</div>
+                </div>
+            </div>
+        </div>
+
+        <!--特色业务-->
+        <div id="intro2" class="intro hidden">
+            <div onmouseenter="change(3)" onmouseleave="change2(3)" style="width:49%;" class="img mask">
+                <div> <img src="img/img_homepage/business-wl5.png" /></div>
+                <div id="changeColor3" class="detail">
+                <div class="text_header">商务往来</div>
+                <div class="text_content">与其他各大物流、仓储公司有长期友好的合作，达成了一致的共识。</div>
+                </div>
+            </div>
+
+            <div onmouseenter="change(4)" onmouseleave="change2(4)" style="width:49%;" class="img mask">
+                <div> <img src="img/img_homepage/business-wl7.png" /></div>
+                <div id="changeColor4" class="detail">
+                <div class="text_header">订单结算</div>
+                <div class="text_content">支持客户在线结算、现金结算等多种方式，全方位保护客户的财产安全。</div>
+                </div>
+            </div>
+        </div>
+
+        <!--数据分析-->
+        <div id="intro3" class="intro hidden">
+            <div onmouseenter="change(5)" onmouseleave="change2(5)" style="width:49%;" class="img mask">
+                <div> <img src="img/img_homepage/data_analyse1.png" /></div>
+                <div id="changeColor5" class="detail">
+                <div class="text_header">货物占比</div>
+                <div class="text_content">扇形统计图统计出个人或企业用户的各种货物在仓库中的所占比。</div>
+                </div>
+            </div>
+
+            <div onmouseenter="change(6)" onmouseleave="change2(6)" style="width:49%;" class="img mask">
+                <div> <img src="img/img_homepage/data_analyse2.png" /></div>
+                <div id="changeColor6" class="detail">
+                <div class="text_header">货物数量</div>
+                <div class="text_content">不同的月份、季节，仓库中的货物的数量。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class=" footer1">
+        <ul>
+            <li class="li_header">物流</li>
+            <li>快递服务</li>
+            <li>冷运服务</li>
+            <li>仓储服务</li>
+        </ul>
+        <ul>
+            <li class="li_header">服务支持</li>
+            <li>仓库地点</li>
+            <li>费用查询</li>
+            <li>货物查询</li>
+            <li>货物入库</li>
+            <li>历史纪录</li>
+            <li>更多内容</li>
+        </ul>
+        <ul>
+            <li class="li_header">关于我们</li>
+            <li>新闻公告</li>
+            <li>用户权益</li>
+            <li>主办单位</li>
+            <li>人才招聘</li>
+        </ul>
+        <ul>
+            <li class="li_header">联系我们</li>
+            <li>联系电话</li>
+            <li>公司地址</li>
+            <li>传真</li>
+        </ul>
+    </div>
+
+</body>
+</html>

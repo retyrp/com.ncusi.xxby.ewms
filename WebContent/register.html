@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8;IE=EDGE">
+    <title>用户注册</title>
+    <link rel="stylesheet" type="text/css" href="css/css_register/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/css_register/register.css" />
+    <script type="text/javascript" src="js/js_register/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/js_register/jquery.tools.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".rigister_tab").tabs(".tabRigister", {
+                event: 'click'
+            }); //个人、企业注册标签页切换
+        });
+    </script>
+</head>
+
+<body>
+    <div class="register clearfix">
+        <div class="container clearfix">
+            <div class="login_box rigister_box clearfix">
+                <ul class="login_tab rigister_tab">
+                    <li class="current">个人用户注册</li>
+                    <li>企业用户注册</li>
+                </ul>
+                <!--个人用户注册-->
+                <form id="individualForm" method="post" name="individualFrom" action="/service/new/user/register/individual/register">
+                    <div class="tabLogin tabRigister clearfix">
+                        <ul class="clearfix">
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>手机号</dt>
+                                    <dd>
+                                        <input type="text" placeholder="请输入手机号" name="phone" id="mobile_phone">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>验证手机</dt>
+                                    <dd>
+                                        <input type="text" class="input_short onload_clr" id="individualForm_verifycode" style="margin-right: 10px;" placeholder="请输入验证码" name="verifycode" maxlength="6">
+                                        <input type="button" class="input_short input_button" id="individual_sendVerifyCode" value="获取验证码" readonly unselectable="on" onclick="getCheckCode()">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>密码</dt>
+                                    <dd>
+                                        <input type="password" placeholder="6-16位数字或英文字母" id="individual_password" name="password" size="25" maxlength="35" autocomplete="off" onpaste="return false">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>确认密码</dt>
+                                    <dd>
+                                        <input type="password" placeholder="6-16位数字或英文字母" id="individual_reppassword" name="repassword" size="25" maxlength="30" datatype="*" recheck="password" autocomplete="off" onpaste="return false">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>绑定邮箱</dt>
+                                    <dd>
+                                        <input type="text" placeholder="请输入需要绑定的邮箱地址" name="emailAddress" size="25" maxlength="50" id="individual_emailAddress" ignore="ignore">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li id="individualForm_pic_verifyCode_div">
+                                <dl>
+                                    <dt><i>*</i>验证码</dt>
+                                    <dd>
+                                        <input type="text" class="input_short onload_clr" id="verifyCode" style="margin-right: 10px;" placeholder="请输入验证码">
+                                        <img id="vimage" class="yzm" src="Image.do" width="145" height="32" onclick="ctrl()">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd>
+                                        <a class="btn red" id="register_individual" onclick="register()">注册</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                        <dl class="memberServices">
+                            <dt>注册成为会员，您可以享受更多的服务！</dt>
+                            <dd class="services_ico1">
+                                会员特权，节假日专享礼品</dd>
+                            <dd class="services_ico2">
+                                出入库积分奖励、积分抵运费</dd>
+                            <dd class="services_ico3">
+                                生日特权、会员专享特色惠购</dd>
+                            <dd class="services_ico4">
+                                批量入库更方便</dd>
+                        </dl>
+                    </div>
+                </form>
+                <!--企业用户注册-->
+                <form id="customerFrom" method="post" action="/service/user/register/customerregister">
+                    <div class="tabLogin tabRigister clearfix">
+                        <ul class="clearfix" id="customerFromDiv">
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>月结账号</dt>
+                                    <dd>
+                                        <input id="customerCard" name="customerCard" value="" placeholder="请填写月结账号" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>协议证明信息</dt>
+                                    <dd>
+                                        <input id="remark" name="remark" value="" size="20" placeholder="请输入月结协议任意一个有效联系人电话/邮箱" maxlength="100" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt><i>*</i>图片验证码</dt>
+                                    <dd>
+                                        <input id="verifycode" name="verifycode" class="input_short onload_clr" size="20" placeholder="请输入图片验证码" maxlength="20" type="text">
+                                        <img id="individualForm_imgCode" class="yzm" src="img/img_register/1.jpg" width="145" height="32" onclick="changeimg(this);">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt><i>*</i>用户名</dt>
+                                    <dd>
+                                        <input id="username" value="" maxlength="30" name="username" placeholder="请输入用户名" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt><i>*</i>公司名</dt>
+                                    <dd>
+                                        <input id="company" value="" maxlength="50" name="company" placeholder="请输入公司名称" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt><i>*</i>联系人</dt>
+                                    <dd>
+                                        <input id="linkMan" name="linkMan" value="" placeholder="请填写联系人" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt><i>*</i>手机号码</dt>
+                                    <dd>
+                                        <input id="mobile" name="mobile" placeholder="请填写手机号码" value="" size="20" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt><i>*</i>手机验证码</dt>
+                                    <dd>
+                                        <input type="text" class="input_short onload_clr" id="cust_verifycode" placeholder="请输入验证码" maxlength="6" style="margin-right: 10px;">
+                                        <input class="input_short input_button" type="button" id="cust_register_sendVerifyCode" value="获取验证码" readonly unselectable="on">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt><i>*</i>电子邮箱</dt>
+                                    <dd>
+                                        <input id="email" maxlength="100" name="email" placeholder="请填写电子邮箱" value="" size="20" type="text">
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="reginfo">
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd>
+                                        <button type="button" class="btn red">
+                                        注册</button>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                        <dl class="memberServices comUser">
+                            <p>
+                                <strong>电子仓储系统介绍</strong></p>
+                            <p>
+                                提供优质的仓库存储服务，保证货物的安全；</p>
+                            <p>
+                                老用户优先体验和试用新服务，享受各种市场推广、客户回馈等特惠；</p>
+                            <p>
+                                更多、更方便的免费服务选择，用户专属免费增值服务 ;</p>
+                            <p>
+                                电子仓储服务，快速准确的货物核对；</p>
+                            <p>
+                                存货物、选用服务均可获积分，更多丰富礼品等您拿！</p>
+                            <p>
+                                <strong>现在就去注册！</a></strong></p>
+                        </dl>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer w">
+        &copy; 2017 电子仓储 版权所有
+    </div>
+</body>
+
+</html>

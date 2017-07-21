@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ncusi.xxby.ewms.mapper.UserMapper">
+	<select id="loginUser" parameterType="com.ncusi.xxby.ewms.model.user.User"
+		resultType="com.ncusi.xxby.ewms.model.user.User">
+		select T_User_ID as id,T_User_Name as name,T_User_Password
+		as password,T_User_Phone as Phone,T_User_Mail as mail from
+		t_user_one
+		where T_User_ID=#{id}AND
+		T_User_Password=#{password}
+	</select>
+
+	<insert id="registerUser" parameterType="com.ncusi.xxby.ewms.model.user.User">
+		<selectKey keyProperty="id" order="AFTER"> select T_User_ID from
+			t_user_one
+		</selectKey>
+		insert into t_user_one
+		values(#{id},#{name},#{password},#{phone},#{mail})
+	</insert>
+
+	<delete id="deleteUser" parameterType="com.ncusi.xxby.ewms.model.user.User">
+		delete from t_user_one
+		where
+		T_User_ID=#{id}
+	</delete>
+
+	<select id="searchUser" parameterType="com.ncusi.xxby.ewms.model.user.UserInfo"
+		resultType="com.ncusi.xxby.ewms.model.user.UserInfo">
+		select T_User_ID as id,T_User_Name as name,T_User_Password
+		as password,
+		T_User_Phone as phone,T_User_Mail as mail from t_user_one
+		<where>
+			<if test="id!=null">T_User_ID=#{id}</if>
+			<if test="name!=null">T_User_Name=#{name}</if>
+			<if test="password!=null">T_User_Password=#{password}</if>
+			<if test="phone!=null">T_User_Phone=#{phone}</if>
+			<if test="mail!=null">T_User_Mail=#{mail}</if>
+		</where>
+	</select>
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 详细信息 -->
+	<!-- 添加 -->
+	<insert id="registerInfo" parameterType="com.ncusi.xxby.ewms.model.user.UserInfo">
+		insert into t_user_two
+		values(#{id},#{sex},#{address},#{kind},#{connect},#{checkid},#{checkwork},#{checkmail},#{checkphone},#{other})
+	</insert>
+	<!-- 查询 -->
+	<select id="search" parameterType="com.ncusi.xxby.ewms.model.user.UserInfo">
+		select T_User_ID as id,T_User_Sex as sex,T_User_Adress as
+		address,T_User_Kind as kind,T_User_Connect as connect,T_User_Check_ID
+		as checkid,T_User_Check_Work as checkwork,T_User_Mail as
+		checkmail,T_User_Check_Phone as checkphone,T_User_Other as other from
+		t_user_two
+		<where>
+			<if test="id!=null">T_User_ID = #{id}</if>
+			<if test="sex!=null">AND T_User_Sex = #{sex}</if>
+			<if test="id!=null">T_User_Adress = #{id}</if>
+			<if test="kind!=null">T_User_Kind = #{kind}</if>
+			<if test="connect!=null">T_User_Connect = #{connect}</if>
+			<if test="checkid!=null">T_User_Check_ID = #{checkid}</if>
+			<if test="checkwork!=null">T_User_Check_Work = #{checkwork}</if>
+			<if test="checkmail!=null">T_User_Check_Mail = #{checkmail}</if>
+			<if test="checkphone!=null">T_User_Check_Phone = #{checkphone}</if>
+			<if test="other!=null">T_User_Other = #{other}</if>
+		</where>
+	</select>
+	<!-- 更新 -->
+	<update id="updateUserInfo" parameterType="com.ncusi.xxby.ewms.model.user.UserInfo">
+		update t_user_two set
+		T_User_Sex=#{sex},T_User_Adress=#{address},T_User_Kind=#{kind},T_User_Connect=#{connect},T_User_Check_ID
+		= #{checkid},T_User_Check_Work =
+		#{checkwork},T_User_Check_Mail=#{checkmail},T_User_Check_Phone=#{checkphone},T_User_Other=#{other}
+		where T_User_ID=#{id}
+	</update>
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 地址 -->
+	<insert id="addAddress" parameterType="com.ncusi.xxby.ewms.model.user.UserAddress">
+		insert into t_address
+		values(#{indexA},#{address},#{userId})
+	</insert>
+	<delete id="deleteAddress" parameterType="com.ncusi.xxby.ewms.model.user.UserAddress">
+		delete from t_address
+		where T_Address_Index = #{indexA}
+	</delete>
+	<update id="updateAddress" parameterType="com.ncusi.xxby.ewms.model.user.UserAddress">
+		update t_address set
+		T_Address_Content = #{address},T_Address_User_ID =
+		#{userId} where
+		T_Address_Index=#{indexA}
+	</update>
+	<select id="getUserAddress" parameterType="com.ncusi.xxby.ewms.model.user.UserAddress"
+		resultType="com.ncusi.xxby.ewms.model.user.UserAddress">
+		select T_Address_Index as indexA,T_Address_Content as
+		address,T_Address_User_ID as userId from t_address
+		<where>
+			<if test="indexA!=null">T_Address_Index = #{indexA}</if>
+			<if test="address!=null">AND T_Address_Content =#{address}</if>
+			<if test="userId!=null">AND T_Address_User_ID=#{userId}</if>
+		</where>
+	</select>
+</mapper>

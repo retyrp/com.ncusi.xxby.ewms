@@ -1,0 +1,283 @@
+﻿.mask {
+    position: absolute;
+    top: 0px;
+    background-color: #777;
+    z-index: 1002;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.main {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#div_left {
+    width: 800px;
+    height: 400px;
+    z-index: 2000;
+}
+
+#div_right {
+    position: absolute;
+    top: 380px;
+    left: 35%;
+    width: 60%;
+}
+
+.ellipsis {
+    position: relative;
+    z-index: 1002;
+    top: 5px;
+    overflow: hidden;
+    width: 250px;
+}
+
+#INconfirm {
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 200px;
+    margin-left: 30%;
+    z-index: 3000;
+    width: 600px;
+}
+
+#INconfirm>table {
+    margin: 20px;
+}
+
+#OUTconfirm {
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 200px;
+    margin-left: 30%;
+    z-index: 3000;
+    width: 600px;
+}
+
+#OUTconfirm>table {
+    margin: 20px;
+}
+
+#SELEconfirm {
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 200px;
+    margin-left: 30%;
+    z-index: 3000;
+    width: 600px;
+}
+
+#SELEconfirm>table {
+    margin: 20px;
+}
+
+#sTable {
+    margin: 20px;
+}
+
+.bottom_right {
+    float: left;
+    margin-left: 19px;
+    width: 50%;
+}
+
+.radio {
+    width: 100%;
+    height: 30px;
+}
+
+.radio_left {
+    float: left;
+}
+
+.radio_right {
+    float: left;
+}
+
+.select {
+    width: 100%;
+    height: 50px;
+}
+
+.select select {
+    float: left;
+    margin-right: 3px;
+}
+
+.addAddress {
+    width: 100%;
+}
+
+.address {
+    width: 100%;
+    height: 50px;
+}
+
+.storeAddress_text {
+    margin-top: 7px;
+    margin-right: 5px;
+    float: left;
+}
+
+.div_btn {
+    width: 100%;
+    height: 50px;
+}
+
+.operate_border {
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 100px;
+    margin-left: 30%;
+    z-index: 3000;
+    border: 1px solid black;
+}
+
+.operate_code {
+    margin: 20px;
+}
+
+.op_bottom {
+    height: 35px;
+    padding-left: 85%;
+}
+
+.addsp {
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 200px;
+    margin-left: 20%;
+    z-index: 3000;
+    border: 1px solid black;
+}
+
+.addsp_in {
+    margin: 20px;
+}
+
+.inputnum {
+    float: left;
+    padding-top: 7px;
+    padding-left: 10px;
+    margin-right: 7px;
+}
+
+.welcome {
+    background-color: #E6E6E6;
+}
+
+.welcome img {
+    opacity: 0.7;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+}
+
+.welcome img:hover {
+    opacity: 0.2;
+    /* image on hover */
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.welcome>div {
+    float: left;
+    overflow: hidden;
+    width: 25%;
+    margin-left: 6.25%;
+    margin-top: 4%;
+    z-index: 3000;
+}
+
+.welcome>div>div {
+    z-index: 1002;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.cover {
+    position: absolute;
+    top: 0px;
+    background-color: #777;
+    z-index: 2000;
+    left: 0px;
+    width: 100%;
+    padding-top: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+    right: 0px;
+    bottom: 0px;
+}
+
+.hiddenCol {
+    display: none;
+}
+
+.myborder {
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, .1) 0 5px 5px;
+}
+
+
+/*修改 添加这个类*/
+
+.myTcBorder {
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    box-shadow: 5px 5px 5px #3C3C3C;
+}
+
+.gw_num {
+    border: 1px solid #dbdbdb;
+    width: 80%;
+    line-height: 26px;
+    overflow: hidden;
+}
+
+.gw_num em {
+    display: block;
+    height: 26px;
+    width: 15%;
+    float: left;
+    color: #7A7979;
+    border-right: 1px solid #dbdbdb;
+    text-align: center;
+    cursor: pointer;
+}
+
+.gw_num .num {
+    display: block;
+    float: left;
+    text-align: center;
+    width: 70%;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    border: 0;
+}
+
+.gw_num em.add {
+    float: right;
+    border-right: 0;
+    border-left: 1px solid #dbdbdb;
+}
+
+.loading{
+	
+	position:absolute;
+    top: 0px;
+    background-color: #777;
+    z-index: 1002;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    display: block;
+}

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncusi.xxby.ewms.mapper.StoreMapper">
+
+	<!-- 查询 -->
+	<select id="getStoreInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo">
+		select T_Store_Info_ID as code,T_Store_Info_Name as
+		name,T_Store_Info_Address as address,T_Store_Info_Manager_ID as
+		managerID,T_Store_Info_Class as kind,T_Store_Info_Area as
+		area,T_Store_Info_State as state from t_store_info
+	</select>
+
+	<select id="getStoreInfoPlus" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo">
+		select T_Store_Info_ID as code,T_Store_Info_Name as
+		name,T_Store_Info_Address as address,T_Store_Info_Manager_ID as
+		managerID,T_Store_Info_Class as kind,T_Store_Info_Area as
+		area,T_Store_Info_State as state from t_store_info
+		<where>
+			<if test="code!=null">T_Store_Info_ID=#{code}</if>
+			<if test="name!=null">AND T_Store_Info_Name like #{name}</if>
+			<if test="address!='%null%'">AND T_Store_Info_Address like #{address}</if>
+			<if test="managerID!=null">AND T_Store_Info_Manager_ID=#{managerID}</if>
+			<if test="kind!=null">AND T_Store_Info_Class=#{kind}</if>
+			<if test="area!=null">AND T_Store_Info_Area=#{area}</if>
+			<if test="state!=null">AND T_Store_Info_State=#{state}</if>
+		</where>
+	</select>
+
+
+	<!-- 删除 -->
+	<delete id="deleteStoreInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo">
+		delete from
+		t_store_info where T_Store_Info_ID = #{code}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insertStore" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo">
+		insert into t_store_info
+		values(#{code},#{name},#{address},#{managerID},#{kind},#{area},#{state})
+	</insert>
+
+	<!-- 更新 -->
+	<update id="updateStoreInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreInfo">
+		update t_store_info
+		set
+		T_Store_Info_Name=#{name},T_Store_Info_Address=#{address},T_Store_Info_Manager_ID=#{managerID},T_Store_Info_Class=#{kind},T_Store_Info_Area=#{area},T_Store_Info_State=#{state}
+		where T_Store_Info_ID=#{code}
+	</update>
+
+	<!-- ////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 仓库货品 -->
+	<!-- 查询 -->
+	<select id="getStore" parameterType="com.ncusi.xxby.ewms.model.warehouse.Store"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.Store">
+		select T_Store_Code as code,T_Store_Name as name,T_Store_T_ID
+		as
+		goodID,T_Store_User_ID as userID ,T_Store_Store_ID as
+		warehouseID,T_Store_Number as quantity,T_Store_Price as price,
+		T_Store_Class as classID,T_Store_Remark as remark from t_store
+		<where>
+			<if test="code!=null">T_Store_Code=#{code}</if>
+			<if test="name!=null">AND T_Store_Name like #{name}</if>
+			<if test="goodID!=null">AND T_Store_T_ID like #{goodID}</if>
+			<if test="userID!=null">AND T_Store_User_ID=#{userID}</if>
+			<if test="warehouseID!=null">AND T_Store_Store_ID=#{warehouseID}</if>
+			<if test="quantity!=0">AND T_Store_Number=#{quantity}</if>
+			<if test="price!=null">AND T_Store_Price=#{price}</if>
+			<if test="classID!=0">AND T_Store_Class=#{classID}</if>
+			<if test="remark!=null">AND T_Store_Remark like #{remark}</if>
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertStoreS" parameterType="com.ncusi.xxby.ewms.model.warehouse.Store">
+		insert into t_store
+		values(#{code},#{name},#{goodID},#{userID},#{warehouseID},#{quantity},#{price},#{classID},#{remark})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteStoreS" parameterType="com.ncusi.xxby.ewms.model.warehouse.Store">
+		delete from t_store
+		where T_Store_Code = #{code}
+	</delete>
+
+	<!-- 更新 -->
+	<update id="updateStoreS" parameterType="com.ncusi.xxby.ewms.model.warehouse.Store">
+		update t_store set
+		T_Store_Name=#{name},T_Store_T_ID=#{goodID},T_Store_User_ID
+		=#{userID},T_Store_Store_ID =
+		#{warehouseID},T_Store_Number =
+		#{quantity},T_Store_Price = #{price},
+		T_Store_Class
+		=#{classID},T_Store_Remark =#{remark} where T_Store_Code=#{code}
+	</update>
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 单位箱 -->
+	<!-- 查询 -->
+	<select id="getBox" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreBox"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.StoreBox">
+		select T_Store_Box_Code as
+		code,T_Store_Box_Store_ID as
+		warehouseID,T_Store_Box_Store_Code as
+		goodsID,T_Store_Box_Source as
+		source,T_Store_Box_Time_In as
+		timeIn,T_Store_Box_Admin as
+		adminID,T_Store_Box_Class as classID from
+		t_store_box
+		<where>
+			<if test="code!=null">T_Store_Box_Code=#{code}</if>
+			<if test="warehouseID!=null">AND T_Store_Box_Store_ID=#{warehouseID}</if>
+			<if test="goodsID!=null">AND T_Store_Box_Store_Code like #{goodsID}</if>
+			<if test="source!=null">AND T_Store_Box_Source=#{source}</if>
+			<if test="timeIn!=null">AND <![CDATA[datediff(#{timeIn}，T_Store_Box_Time_In)<1]]></if>
+			<if test="adminID!=null">AND T_Store_Box_Admin=#{adminID}</if>
+			<if test="classID!=0">AND T_Store_Box_Class=#{classID}</if>
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertBox" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreBox">
+		insert into t_store_box
+		values(#{code},#{warehouseID},#{goodsID},#{source},#{timeIn},#{adminID},#{classID})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteBox" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreBox">
+		delete from t_store_box
+		where T_Store_Box_Code=#{code}
+	</delete>
+	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 仓库状态日志 -->
+	<!-- 查询 -->
+	<select id="getStoreStateLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreState"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.StoreState">
+		select T_Store_State_ID as code,T_Store_State_Store_ID as
+		warehouseID,T_Store_State_Date as date,T_Store_State_Manager_ID as
+		managerID,T_Store_State_State as state,T_Store_State_Vol as
+		quantity,T_Store_State_Event as event,T_Store_State_Suggest as
+		suggest,T_Store_State_Mark as remark from t_store_state
+		<where>
+			<if test="code!=null">T_Store_State_ID=#{code}</if>
+			<if test="warehouse!=null">AND T_Store_State_Store_ID=#{warehouseID}</if>
+			<if test="date!=null">AND <![CDATA[datediff(#{date},T_Store_State_Date)<1]]></if>
+			<if test="managerID!=null">AND T_Store_State_Manager_ID=#{managerID}</if>
+			<if test="state!=null">AND T_Store_State_State=#{state}</if>
+			<if test="quantity!=0">AND T_Store_State_Vol=#{quantity}</if>
+			<if test="event!=null">AND T_Store_State_Event=#{event}</if>
+			<if test="suggest!=null">AND T_Store_State_Suggest=#{suggest}</if>
+			<if test="remark!=null">AND T_Store_State_Mark=#{remark}</if>
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertStoreStateLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreState">
+		insert into
+		t_store_state
+		values(#{code},#{warehouse},#{date},#{managerID},#{state},#{quantity},#{event},#{suggest},#{remark})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteStoreStateLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.StoreState">
+		delete from
+		t_store_state where T_Store_State_ID=#{code}
+	</delete>
+	<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 入库 -->
+	<!-- 入库查询 -->
+	<select id="getInInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.InInfo"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.InInfo">
+		select T_In_Info_Main_Key as code,T_In_Info_Code as
+		opCode,T_In_Info_ID as
+		warehouseID,T_In_Info_Store_Code as
+		goodID,T_In_Info_Store_T_ID as
+		tGoodID,T_In_Info_Store_Name as
+		goodName,T_In_Info_Store_Price as
+		price,T_In_Info_Store_Class as
+		classID,T_In_Info_Store_Number as
+		quantity,T_In_Info_Remark as remark,
+		T_In_Info_User_ID as userID
+		from t_in_info
+		<where>
+			<if test="code!=null">T_In_Info_Main_Key=#{code}</if>
+			<if test="opCode!=null">AND T_In_Info_Code=#{opCode}</if>
+			<if test="warehouseID!=null">AND T_In_Info_ID=#{warehouseID}</if>
+			<if test="goodID!=null">AND T_In_Info_Store_Code like #{goodID}</if>
+			<if test="tGoodID!=null">AND T_In_Info_Store_T_ID=#{tGoodID}</if>
+			<if test="goodName!=null">AND T_In_Info_Store_Name like #{goodName}</if>
+			<if test="price!=null">AND T_In_Info_Store_Price=#{price}</if>
+			<if test="classID!=0">AND T_In_Info_Store_Class=#{classID}</if>
+			<if test="quantity!=0">AND T_In_Info_Store_Number=#{quantity}</if>
+			<if test="remark!=null">AND T_In_Info_Remark=#{remark}</if>
+			<if test="userID!=null">AND T_In_Info_User_ID=#{userID}</if>
+		</where>
+	</select>
+	<!-- 入库添加 -->
+	<insert id="insertInInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.InInfo">
+		insert into t_in_info
+		values(#{code},#{opCode},#{warehouseID},#{goodID},#{tGoodID},#{goodName},#{price},#{classID},#{quantity},#{remark},#{userID});
+	</insert>
+	<!-- 入库删除 -->
+	<delete id="deleteInInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.InInfo">
+		delete from t_in_info
+		where T_In_Info_Main_Key=#{code}
+	</delete>
+	<!-- 入库更新 -->
+	<update id="updateInInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.InInfo">
+		update t_in_info set
+		T_In_Info_Code =
+		#{opCode},T_In_Info_ID =
+		#{warehouseID},T_In_Info_Store_Code =
+		#{goodID},T_In_Info_Store_T_ID =
+		#{tGoodID},T_In_Info_Store_Name =
+		#{goodName},T_In_Info_Store_Price =
+		#{price},T_In_Info_Store_Class =
+		#{classID},T_In_Info_Store_Number =
+		#{quantity},T_In_Info_Remark =
+		#{remark},T_In_Info_User_ID = #{userID} where T_In_Info_Main_Key
+		=#{code}
+	</update>
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 入库日志查询 -->
+	<select id="getInLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.InLog"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.InLog">
+		select T_In_Log_Code as code,T_In_Log_Store_Code as
+		goodID,T_In_Log_Store_ID as warehouseID,T_In_Log_Admin as
+		adminID,T_In_Log_Number as quantity,T_In_Log_Date as
+		date,T_In_Log_Source as source,T_In_Log_GetCode as
+		opcode,T_In_Log_Remark as remark,T_In_Log_User_ID as userID,T_In_Log_Name as goodName,T_In_Log_Price as price,T_In_Log_Class as classID from t_in_log
+		<where>
+			<if test="code!=null">T_In_Log_Code=#{code}</if>
+			<if test="goodID!=null">AND T_In_Log_Store_Code like #{goodID}</if>
+			<if test="warehouseID!=null">AND T_In_Log_Store_ID=#{warehouseID}</if>
+			<if test="adminID!=null">AND T_In_Log_Admin=#{adminID}</if>
+			<if test="quantity!=0">AND T_In_Log_Number=#{quantity}</if>
+			<if test="date!=null">AND <![CDATA[datediff(#{date},T_In_Log_Date)<1]]> </if>
+			<if test="source!=null">AND T_In_Log_Source=#{source}</if>
+			<if test="opcode!=null">AND T_In_Log_GetCode=#{opcode}</if>
+			<if test="remark!=null">AND T_In_Log_Remark=#{remark}</if>
+			<if test="userID!=null">AND T_In_Log_User_ID=#{userID}</if>
+			<if test="goodName!=null">AND T_In_Log_Name like #{goodName}</if>
+			<if test="price!=null">AND T_In_Log_Price = #{price}</if>
+			<if test="classID!=0">AND T_In_Log_Class = #{classID}</if>
+
+		</where>
+	</select>
+	<!-- 入库日志添加 -->
+	<insert id="insertInLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.InLog">
+		insert into t_in_log
+		values(#{code},#{goodID},#{warehouseID},#{adminID},#{quantity},#{date},#{source},#{opcode},#{remark},#{userID},#{goodName},#{price},#{classID})
+	</insert>
+	<!-- 入库日志删除 -->
+	<delete id="deleteInLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.InLog">
+		delete from t_in_log
+		where T_In_Log_Code=#{code}
+	</delete>
+	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 出库表 -->
+	<!-- 查询 -->
+	<select id="getOut" parameterType="com.ncusi.xxby.ewms.model.warehouse.Out"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.Out">
+		select T_Out_main_key as code,T_Out_Code as
+		opCode,T_Out_Store_ID as
+		warehouseID,T_Out_Store_Code as
+		goodID,T_Out_Store_Number as
+		quantity,T_Out_remark as remark,T_Out_User_ID as userID from t_out
+		<where>
+			<if test="code!=null">T_Out_main_key=#{code}</if>
+			<if test="opCode!=null">AND T_Out_Code=#{opCode}</if>
+			<if test="warehouseID!=null">AND T_Out_Store_ID=#{warehouseID}</if>
+			<if test="goodID!=null">AND T_Out_Store_Code like #{goodID}</if>
+			<if test="quantity!=0">AND T_Out_Store_Number=#{quantity}</if>
+			<if test="remark!=null">AND T_Out_remark=#{remark}</if>
+			<if test="userID!=null">AND T_Out_User_ID=#{userID}</if>
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertOut" parameterType="com.ncusi.xxby.ewms.model.warehouse.Out">
+		insert into t_out
+		values(#{code},#{opCode},#{warehouseID},#{goodID},#{quantity},#{remark},#{userID})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteOut" parameterType="com.ncusi.xxby.ewms.model.warehouse.Out">
+		delete from t_out where
+		T_Out_main_key = #{code}
+	</delete>
+	<!-- 更新 -->
+	<update id="updateOut" parameterType="com.ncusi.xxby.ewms.model.warehouse.Out">
+		update t_out set
+		T_Out_Code=#{opCode},T_Out_Store_ID=#{warehouseID},T_Out_Store_Code=#{goodID},T_Out_Store_Number=#{quantity},T_Out_remark=#{remark},T_Out_User_ID=#{userID}
+		where T_Out_main_key = #{code}
+	</update>
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 出库日志 -->
+	<!-- 查询 -->
+	<select id="getOutLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.OutLog"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.OutLog">
+		select T_Out_Log_Code as code,T_Out_Log_Store_Code as
+		goodID,T_Out_Log_Store_ID as warehouseID,T_Out_Log_Admin as
+		adminID,T_Out_Log_Number as quantity,T_Out_Log_Date as
+		date,T_Out_Log_Aim as aim,T_Out_Log_GetCode as opID,T_Out_Log_remark
+		as remark ,T_Out_Log_User_ID as userID,T_Out_Log_Name as goodName,T_Out_Log_Price as price,T_Out_Log_Class as classID from t_out_log
+		<where>
+			<if test="code!=null">T_Out_Log_Code=#{code}</if>
+			<if test="goodID!=null">AND T_Out_Log_Store_Code like #{goodID}</if>
+			<if test="warehouseID!=null">AND T_Out_Log_Store_ID=#{warehouseID}</if>
+			<if test="adminID!=null">AND T_Out_Log_Admin=#{adminID}</if>
+			<if test="quantity!=0">AND T_Out_Log_Number=#{quantity}</if>
+			<if test="date!=null">AND <![CDATA[datediff(#{date},T_Out_Log_Date)<1]]></if>
+			<if test="aim!=null">AND T_Out_Log_Aim=#{aim}</if>
+			<if test="opID!=null">AND T_Out_Log_GetCode=#{opID}</if>
+			<if test="remark!=null">AND T_Out_Log_remark=#{remark}</if>
+			<if test="userID!=null">AND T_Out_Log_User_ID=#{userID}</if>
+			<if test="goodName!=null">AND T_Out_Log_Name like #{goodName}</if>
+			<if test="price!=null">AND T_Out_Log_Price = #{price}</if>
+			<if test="classID!=0">AND T_Out_Log_Class = #{classID}</if>
+			
+
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertOutLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.OutLog">
+		insert into t_out_log
+		values(#{code},#{goodID},#{warehouseID},#{adminID},#{quantity},#{date},#{aim},#{opID},#{remark},#{userID},#{goodName},#{price},#{classID})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteOutLog" parameterType="com.ncusi.xxby.ewms.model.warehouse.OutLog">
+		delete from t_out_log
+		where T_Out_Log_Code=#{code}
+	</delete>
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 移库表 -->
+	<!-- 查询 -->
+	<select id="getMove" parameterType="com.ncusi.xxby.ewms.model.warehouse.Move"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.Move">
+		select T_Move_Code as code,T_Move_Op_ID as
+		opID,T_Move_Aim_ID as
+		aimID,T_Move_Source_ID as sourceID,T_Move_Date as
+		date,T_Move_Store_Code as goodID,T_Move_Number as
+		quantity,T_Move_State as state from t_move
+		<where>
+			<if test="code!=null">T_Move_Code=#{code}</if>
+			<if test="opID!=null">AND T_Move_Op_ID=#{opID}</if>
+			<if test="aimID!=null">AND T_Move_Aim_ID=#{aimID}</if>
+			<if test="sourceID!=null">AND T_Move_Source_ID=#{sourceID}</if>
+			<if test="date!=null">AND <![CDATA[datediff(#{date},T_Move_Date)<1]]></if>
+			<if test="goodID!=null">AND T_Move_Store_Code like #{goodID}</if>
+			<if test="opID!=null">AND T_Move_Number=#{opID}</if>
+			<if test="state!=0">AND T_Move_State=#{state}</if>
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertMove" parameterType="com.ncusi.xxby.ewms.model.warehouse.Move">
+		insert into t_move
+		values(#{code},#{opID},#{aimID},#{sourceID},#{date},#{goodID},#{quantity},#{state})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteMove" parameterType="com.ncusi.xxby.ewms.model.warehouse.Move">
+		delete from t_move where
+		T_Move_Code=#{code}
+	</delete>
+	<!-- 更新 -->
+	<update id="updateMove" parameterType="com.ncusi.xxby.ewms.model.warehouse.Move">
+		update t_move set
+		T_Move_Op_ID = #{opID},T_Move_Aim_ID
+		=
+		#{aimID},T_Move_Source_ID =
+		#{sourceID},T_Move_Date =
+		#{date},T_Move_Store_Code =
+		#{goodID},T_Move_Number
+		=#{quantity},T_Move_State = #{state} where
+		T_Move_Code = #{code}
+	</update>
+	<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 移库日志 -->
+	<!-- 查询 -->
+	<select id="getMoveInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.MoveInfo"
+		resultType="com.ncusi.xxby.ewms.model.warehouse.MoveInfo">
+		select T_Move_Info_Code as code,T_Move_Info_Op_ID as
+		opID,T_Move_Info_Aim_ID
+		as aimID,T_Move_Info_Source_ID as
+		sourceID,T_Move_Info_Date as
+		date,T_Move_Info_Store_Code as
+		goodID,T_Move_Info_Number as
+		quantity,T_Move_Info_State as state from
+		t_move_info
+		<where>
+			<if test="code!=null">T_Move_Info_Code=#{code}</if>
+			<if test="opID!=null">AND T_Move_Info_Op_ID=#{opID}</if>
+			<if test="aimID!=null">AND T_Move_Info_Aim_ID=#{aimID}</if>
+			<if test="sourceID!=null">AND T_Move_Info_Source_ID=#{sourceID}</if>
+			<if test="date!=null">AND <![CDATA[datediff(#{date},T_Move_Info_Date)<1]]></if>
+			<if test="goodID!=null">AND T_Move_Info_Store_Code like #{goodID}</if>
+			<if test="quantity!=0">AND T_Move_Info_Number=#{quantity}</if>
+			<if test="state!=0">AND T_Move_Info_State=#{state}</if>
+		</where>
+	</select>
+	<!-- 添加 -->
+	<insert id="insertMoveInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.MoveInfo">
+		insert into
+		t_move_info
+		values(#{code},#{opID},#{aimID},#{sourceID},#{date},#{goodID},#{quantity},#{state})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteMoveInfo" parameterType="com.ncusi.xxby.ewms.model.warehouse.MoveInfo">
+		delete from
+		t_move_info where T_Move_Info_Code=#{code}
+	</delete>
+</mapper>

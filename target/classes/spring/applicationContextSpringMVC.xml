@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+<context:component-scan base-package="com.ncusi.xxby.ewms.controller.*"></context:component-scan>
+<mvc:annotation-driven></mvc:annotation-driven>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- <property name="prefix" value="/WEB-INF/jsp/"/> -->
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+	<mvc:interceptors>   
+      <!-- 配置登陆拦截器 -->  
+      <mvc:interceptor>  
+          <mvc:mapping path="/UserStore/**"/>  
+          <bean class="com.ncusi.xxby.ewms.controller.util.LoginHandlerIntercepter"></bean>  
+      </mvc:interceptor>  
+      <!--  
+      ..... 
+       -->  
+       <mvc:interceptor>  
+          <mvc:mapping path="/Manager/0/**"/>
+          <bean class="com.ncusi.xxby.ewms.controller.util.ManagerHandlerIntercepter"></bean>  
+      </mvc:interceptor>
+      <mvc:interceptor>  
+          <mvc:mapping path="/Manager/1/**"/>
+          <bean class="com.ncusi.xxby.ewms.controller.util.ManagerHandlerIntercepter_b"></bean>  
+      </mvc:interceptor>
+      <mvc:interceptor>  
+          <mvc:mapping path="/Manager/2/**"/>
+          <bean class="com.ncusi.xxby.ewms.controller.util.ManagerHandlerIntercepter_c"></bean>  
+      </mvc:interceptor>
+ </mvc:interceptors>  
+
+</beans>

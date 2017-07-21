@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心</title>
+
+    <!--Core CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/bootstrap3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <!---->
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="css/my.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <!-- 头部 第一部分 -->
+    <header id="header_part">
+        <div class="header_part" id="head">
+            <div class="overlay">
+                <div class="start_part">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="row">
+                                    <!-- Logo Start -->
+                                    <div class="site_logo">
+                                        <a href="#" title=""><img style=" width:150px;" src="images/3.png" alt="" title="" /></a>
+                                    </div>
+                                    <!-- Logo End-->
+                                    <!-- Site Title start-->
+                                    <div class="site_title">
+                                        <h1>欢迎进入一号仓库</h1>
+                                        <p>Welcome to warehouse No. 1 <br/>We are honored to serve you, I wish you good health and smooth work<br/> Look at it!</p>
+                                    </div>
+                                    <!-- Site Title end-->
+                                    <!-- Countdown start -->
+                                    <div class="countdown wow bounceInUp">
+                                        <div class="defaultCountdown"></div>
+                                    </div>
+                                    <!-- Countdown end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Start -->
+                <div class="menu_area" id="stick_menu">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <nav class="navbar navbar-default" role="navigation">
+                                    <div class="container-fluid">
+                                        <div class="collapse navbar-collapse mainnavmenu" id="bs-example-navbar-collapse-1">
+                                            <div id="menu-center">
+                                                <ul class="nav navbar-nav navbar-right mainnav">
+                                                    <li><a href="#header_part">开始</a></li>
+                                                    <li><a onclick="show_my_info_section()" href="#my_info_section">我的信息</a></li>
+                                                    <li><a onclick="show_IOcode()" href="#IOcode">操作</a></li>
+
+                                                    <li><a onclick="show_welcome_section()" href="#welcome_section">介绍</a></li>
+                                                    <li><a href="#bbTable" onclick="show_bbTable()">报表</a></li>
+                                                    <li><a href="#contact_section">联系我们</a></li>
+                                                    <li><a href="" onclick="logout()">注销</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu End-->
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+
+    <!--我的信息 第二部分-->
+    <section id="my_info_section" style="padding:20px;" class="hidden">
+        <div>
+            <div id="adm_info" class="panel panel-default" style="width:90%;margin:0 auto;padding:20px;">
+                <h3 style="text-align:center;margin-bottom:20px;">我的信息</h3>
+                <table id="info_table" style="width:100%;margin:0 auto;">
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:70%;display:inline;" readonly type="text" class="form-control"></input>
+                        </td>
+                        <td>姓名 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                        </td>
+                        <td>性别 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>出生年月 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                        </td>
+                        <td>手机 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                        </td>
+                        <td>邮箱 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                        </td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址 <input style="width:70%;display:inline;" type="text" class="form-control"></input>
+                        </td>
+                    </tr>
+
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                        <td colspan="3">
+                            <div style="margin:0 auto;width:300px;">
+                                <input type="button" class="btn btn-default" value="确认修改"></input>
+                                <input style="margin-left:20px;" type="button" class="btn btn-default" value="取消"></input>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <!--出/入库码-->
+    <section id="IOcode" style="">
+        <div class="email_subscribe_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!-- Email Subscriber text start-->
+                        <div class="section-title">
+                            <h2>生成出/入库码</h2>
+                        </div>
+                        <!-- Email Subscriber text end-->
+                        <div class="email_subscribe_form_part wow zoomIn">
+                            <!-- Email Subscribe Form start -->
+
+                            <input type="text" id="contact_name_opcode" name="name" class="form-control select_input_box " placeholder="请在此处输入操作码" required/>
+                            <button onclick="createIOcode()" class="btn btn-primary email_submit_box"><i class="fa fa-envelope-o"></i> 确认</button>
+
+                        </div>
+                        <!-- Email Subscribe Form End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="height:1px;border:none;border-top:1px dashed #0066CC; margin:0;" />
+        <div style="height:300px;background-color:#ecf0f1;" class="panel ">
+            <!--提示信息-->
+            <div id="IOmessage" style="margin:0 auto;width:60%;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        使用说明及注意事项
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-warning">我们不需要知道您的操作码，请不要将操作码告知任何人</div>
+                        <div class="alert alert-warning">操作码可以多次操作知道完成你申请的事务，请必保管好操作码，请不要将操作码泄露</div>
+                        <div class="alert alert-warning">提交右侧的数字</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--评价-->
+            <div id="evaluate" class="panel panel-default hidden" style="width:500px; float:left;margin-left:20%;">
+                <div style="width:100%;height:50px;padding-left:33%;padding-top:3%">
+                    <div style="float:left;padding-top:7px;padding-right:7px;">当前状态</div>
+                    <div style="float:left;"><input type="text" class="form-control" readonly style="width:40%;cursor:not-allowed;" id="operateStatus"></input>
+                    </div>
+                    <div style="float:right;padding-right:7px;">
+                        <input type="button" class="btn btn-default" value="刷新" onclick="getOperateStatus()"></input>
+                    </div>
+                </div>
+                <hr style="height:1px;border:none;border-top:1px solid #708BF5; margin:0; margin-top:10px;">
+                <div style="width:100%;height:50px;margin-top:10%;margin-bottom:5%;">
+                    <div style="float:left;margin-left:10%;">
+                        <div style="float:left;padding-top:7px;padding-right:7px;">
+                            操作人员
+                        </div>
+                        <div style="">
+                            <input type="text" class="form-control" readonly style="width:40%;cursor:not-allowed;" id="operateManager"></input>
+                        </div>
+                    </div>
+                    <div style="float:left;">
+                        <div style="float:left;padding-top:3px;padding-right:7px;">
+                            评分
+                        </div>
+
+                        <div style="float:left;" id="starBg" class="star_bg">
+                            <input type="radio" id="starScore1" class="score score_1" value="1" name="score">
+                            <a class="star star_1" title="差"><label for="starScore1">差</label></a>
+                            <input type="radio" id="starScore2" class="score score_2" value="2" name="score">
+                            <a class="star star_2" title="较差"><label for="starScore2">较差</label></a>
+                            <input type="radio" id="starScore3" class="score score_3" value="3" name="score">
+                            <a class="star star_3" title="普通"><label for="starScore3">普通</label></a>
+                            <input type="radio" id="starScore4" class="score score_4" value="4" name="score">
+                            <a class="star star_4" title="较好"><label for="starScore4">较好</label></a>
+                            <input type="radio" id="starScore5" class="score score_5" value="5" name="score">
+                            <a class="star star_5" title="好"><label for="starScore5">好</label></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <i>您可以点击刷新按钮 查询当前状态。</i><br><br>
+                    <i>希望您能给出您评价，你的鼓励就是我们的动力。</i>
+                </div>
+                <div style="float:right;margin-bottom:5px;margin-right:5px;">
+                    <input type="button" class="btn btn-default" onclick="sub_evaluate()" value="提交评价"></input>
+                </div>
+
+            </div>
+
+            <div id="IOcreate" style="float:right; margin-right:20%;height:200px;margin-top:30px;" class="hidden">
+                <label style="height:30px;">生成的出入库码在这里哟</label>
+                <input type="text" style=" cursor:not-allowed; display:block;margin-bottom:30px;height:40px;" readonly id="userOCode"></input>
+                <input id="re_send" type="button" style="margin-left:18%;" onclick="regenerate()" class="btn btn-success" value="重新生成"></input>
+            </div>
+
+            <!--错误页面-->、
+            <div id="errorPage" style="background-image:url('images/error.jpg'); width:300px;height:250px; margin:0 auto;" class="hidden">
+                <label style="position:relative;left:80px;top:40px;">&nbsp;&nbsp;输入的出/入库码有误<br>请你检查你的出/入库码</label>
+            </div>
+    </section>
+
+    <!-- 查询框 第四部分 -->
+    <section id="email_subscribe_section" class="hidden">
+        <div class="email_subscribe_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!-- Email Subscriber text start-->
+                        <div class="section-title">
+                            <h2>库存查询</h2>
+
+                        </div>
+                        <!-- Email Subscriber text end-->
+                        <div class="email_subscribe_form_part wow zoomIn">
+                            <!-- Email Subscribe Form start -->
+
+                            <input type="text" id="search_input" name="name" class="form-control select_input_box " placeholder="入库时间/货物编号 查询货物" required/>
+                            <button class="btn btn-primary email_submit_box" onclick="chaxun()"><i class="fa fa-envelope-o"></i> 查询</button>
+
+                        </div>
+                        <!-- Email Subscribe Form End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="InputOrOutput email_subscribe_section" style="">
+            <div class="select_table">
+                <table style="width:100%" class="mySeleTableInfo table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <td>名称</td>
+                            <td>编号</td>
+                            <td>价格</td>
+                            <td>组</td>
+                            <td>数量</td>
+                            <td>仓库</td>
+                            <td>时间</td>
+                            <td>操作码</td>
+                            <td>备注</td>
+                            <td>状态</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <!--出/入库 第五部分-->
+    <section id="InOrOut" class="hidden">
+        <div style="width:95%;margin:0 auto;border: 1px solid #ccc;padding:10px;">
+            <!--功能  出/入库 左-->
+            <div onmouseenter="showCover()" onmouseleave="disCover()" style="overflow-x:hidden;overflow-y:auto;width:230px;height:480px;" class="myborder ellipsis ">
+
+
+                <div id="div_left" style="">
+                    <!--修改2  添加下面这2行-->
+                    <span style="float:left; font-size:20px;margin-top:4px;">所选商品</span>
+                    <input style="width:120px;height:30px;font-size:15px;padding:0px;margin-top:2px;background-color:#A3A3C2;" onclick="showaddsp()" class="btn " type="button" value="手动添加商品" />
+                    <!--修改2  添加下面这一行-->
+                    <a class="glyphicon glyphicon-arrow-left" style="float:right;color:green;text-decoration:none;width:30px;z-index:4000;font-size:25px;" title="收起展开"></a>
+
+                    <table style="width:95%;" id="sTable" class="myTableSele table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>名称</td>
+                                <td>编号</td>
+                                <td>价格</td>
+                                <td>商品组</td>
+                                <td>库存(箱)</td>
+                                <td>操作数量</td>
+                                <td>备注</td>
+                                <td>商品仓库编号</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <hr>
+                    <div class="panel panel-default" style="float:left;width:45%;margin-left:20px;">
+                        <div class="panel-heading">注意事项</div>
+                        <div class="panel-body">
+                            <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">1.请仔细检查上方操作数据。</div>
+                            <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">2.一旦操作不可更改</div>
+                            <div class="alert alert-warning" style="padding: 10px;margin-bottom: 5px;">3.保管好您的操作码。</div>
+                        </div>
+                    </div>
+                    <div class="bottom_right">
+                        <div class="radio">
+                            <div class="radio3" style="float:left;margin-right:30px;margin-left:20%;">
+                                <input type="radio" id="radio1" name="inType" value="2" checked>
+                                <label for="radio1" checked>
+										需要送/取货服务
+									</label>
+                            </div>
+                            <div class="radio3" style="float:left;">
+                                <input type="radio" id="radio2" name="inType" value="1">
+                                <label for="radio2">
+									不需要
+								</label>
+                            </div>
+                        </div>
+                        <div class="userAddress address">
+                            <div class="storeAddress_text">用户地址</div>
+                            <select class=" form form-control" style="width:250px;display:inline;" id="selAddressUser">
+									<option value="">地址1</option>
+									<option value="">地址2</option>
+								</select>
+                            <div onclick="showAddAddress()" class="glyphicon glyphicon-plus "></div>
+                        </div>
+                        <div class="addAddress hidden">
+                            <div class="select">
+                                <div class="storeAddress_text">省</div>
+                                <select class="prov form form-control" style="width:90px" id="prov5"></select>
+                                <div class="storeAddress_text">市</div>
+                                <select class="city form form-control" style="width:90px" id="city5"></select>
+                                <div class="storeAddress_text">县、区</div>
+                                <select class="dist form form-control" style="width:90px" id="area5"></select>
+                            </div>
+                            <div class="address">
+                                <div class="storeAddress_text">详细地址</div>
+                                <input class="form-control detailAds" style="width:200px;display:inline;" type="text" id='inputAddress'></input>
+                                <input type="button" value="添加地址" onclick="addAddress()"></input>
+                            </div>
+                        </div>
+                        <div id="city_5" class=" hidden">
+                            <div class="select">
+                                <div class="storeAddress_text">省</div>
+                                <select class="prov form form-control" style="width:90px" id="prov6"></select>
+                                <div class="storeAddress_text">市</div>
+                                <select class="city form form-control" style="width:90px" id="city6"></select>
+                                <div class="storeAddress_text">县、区</div>
+                                <select class="dist form form-control" style="width:90px" id="area6" onchange="addressWarehouse()"></select>
+                            </div>
+                            <div class="address">
+                                <div class="storeAddress_text">仓库地址</div>
+                                <select class="dist form form-control" style="width:300px" id="warehouseArea">
+									<option value="">地址1</option>
+									<option value="">地址2</option>
+								</select>
+                            </div>
+                        </div>
+                        <div class="div_btn">
+                            <input type="button" value="确认" class="btn btn-default" style=" background-color:#B4C0D4;width:60px;height:35px; margin-left:25%" onclick="submitForm()"></input>
+                            <input type="button" value="取消" class="btn btn-default " style=" background-color:#3071A8;width:60px;height:35px; margin-left:50px;" onclick="submitClean()"></input>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--遮罩层-->
+                <div class="cover hidden">
+                    <div style="margin:0 auto;width:200px;margin-top:100px;color:white;font-size:15px;border:2px solid white;z-index:1003"><span style="text-align:center;">双击展开<br>再次双击收缩<br><input onclick="is_checked()" type="checkbox" id="checked" name="checkbox1"  value="checkbox"> 不再提示</span></div>
+                </div>
+
+            </div>
+
+            <!--功能  出/入库 右-->
+            <div id="div_right" class="myborder">
+
+                详细信息(点击列表的左边入库，右边库)
+                <div>
+                    <table style="width:100%" class="myTableInfo table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>名称</td>
+                                <td>编号</td>
+                                <td>价格</td>
+                                <td>商品组</td>
+                                <td>库存(箱)</td>
+                                <td>仓库</td>
+                                <td>备注</td>
+                                <td>code</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!--第四部分用到的弹出框-->
+    <div class="mask hidden"></div>
+    <!--修改 添加这一行-->
+    <!--入库弹出框-->
+
+    <div id="INconfirm" class="hidden myTcBorder ">
+        <!--修改  添加myTcBorder类-->
+        <h3 style="text-align:center;">入库</h3>
+        <!--修改 -->
+        <table style="width:100%">
+            <tr>
+                <td>名称 :<label class="badge">121321</lable></td>
+				<td>编号:<label class="badge">##</lable></td>
+				<td>价格:<label class="badge">###</lable></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>商品组:<label class="badge">##</lable></td>
+				<td>库存:<label class="badge">##</lable></td>
+				<td>备注:<label class="badge">-</lable></td>
+				<td class="hidden">商品仓库编号：<label class="badge" >-</lable></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr >
+                <td colspan="3"><label class="inputnum" >数量</label>
+                    <div class="gw_num">
+                        <em class="jian">-</em>
+                        <input type="text" value="1" class="num" />
+                        <em class="add">+</em>
+                    </div>
+                </td>
+
+            </tr>
+            <tr style="height:20px;"></tr>
+            <tr>
+                <td colspan="3">
+                    <a class="btn btn-success" style="width:60px;height:35px; margin-left:35%" onclick="addSeleIn()">确定</a>
+                    <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disINconfirm()">取消</a>
+                    <td>
+            </tr>
+
+        </table>
+    </div>
+    <!--出库弹出框-->
+    <div id="OUTconfirm" class="hidden myTcBorder">
+        <!--修改  添加myTcBorder类-->
+        <h3 style="text-align:center;">出库</h3>
+        <!--修改 -->
+        <table style="width:100%">
+            <tr>
+                <td>名称 :<label class="badge">##</lable></td>
+				<td>编号:<label class="badge">##</lable></td>
+				<td>价格:<label class="badge"></lable></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>商品组:<label class="badge">##</lable></td>
+				<td>库存:<label class="badge">##</lable></td>
+				<td>备注:<label class="badge">-</lable></td>
+				<td class="hidden">商品仓库编号：<label class="badge">-</lable></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr >
+                <td colspan="3"><label class="inputnum" >数量</label>
+                    <div class="gw_num">
+                        <em class="jian">-</em>
+                        <input type="text" value="1" class="num" />
+                        <em class="add">+</em>
+                    </div>
+                </td>
+            </tr>
+            <tr style="height:20px;"></tr>
+            <tr>
+                <td colspan="3">
+                    <a class="btn btn-success" style="width:60px;height:35px; margin-left:35%" onclick="addSeleOut()">确定</a>
+                    <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disOUTconfirm()">取消</a>
+            </tr>
+        </table>
+    </div>
+
+
+    <!--修改添加的商品信息-->
+    <div id="SELEconfirm" class=" hidden myTcBorder">
+        <!--修改  添加myTcBorder类-->
+        <table style="width:100%">
+            <tr>
+                <td>名称:<label class="badge">##</lable></td>
+				<td>编号:<label class="badge">##</lable></td>
+				<td>价格:<label class="badge">###</lable></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>商品组:<label class="badge">##</lable></td>
+				<td>数量:<label class="badge">##</lable></td>
+				<td>备注:<label class="badge">-</lable></td>
+				<td class="hidden">商品仓库编号：<label class="badge">-</lable></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr >
+                <td colspan="3"><label class="inputnum" >数量</label>
+                    <div class="gw_num">
+                        <em class="jian">-</em>
+                        <input type="text" value="1" class="num" />
+                        <em class="add">+</em>
+                    </div>
+                </td>
+            </tr>
+            <tr style="height:20px;"></tr>
+            <tr>
+                <td colspan="3">
+                    <a class="btn btn-success" style="width:60px;height:35px; margin-left:25%" onclick="alterTableSele()">修改</a>
+                    <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disSELEconfirm()">取消</a>
+                    <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="deleteRowSele()">删除</a>
+                    <td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!--操作码-->
+    <div class="operate_border hidden myTcBorder">
+        <!--修改  添加myTcBorder类-->
+        <div class="operate_code">
+            <div class="op_top alert alert-info">
+                您的操作码：xxxxxxxx
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    使用说明及注意事项
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-warning">我们不需要知道您的操作码，请不要将操作码告知任何人</div>
+                    <div class="alert alert-warning">操作码可以多次操作知道完成你申请的事务，请必保管好操作码，请不要将操作码泄露</div>
+                    <div class="alert alert-warning">提交右侧的数字</div>
+                </div>
+            </div>
+            <div class="op_bottom">
+                <a class="btn btn-success" style="width:90px;height:35px;" onclick="disop()">我知道了</a>
+            </div>
+        </div>
+    </div>
+
+    <!--添加商品-->
+    <div class="addsp hidden myTcBorder">
+        <!--修改  添加myTcBorder类-->
+        <div class="addsp_in">
+            <table>
+                <tr>
+                    <td><label class="inputnum">商品名称</label><input class="form-control" type="text" style="width:170px;"></input>
+                    </td>
+                    <td><label class="inputnum">商品编号</label><input class="form-control" type="text" style="width:170px;"></input>
+                    </td>
+                    <td><label class="inputnum">价格</label><input class="form-control" type="text" style="width:170px;"></input>
+                    </td>
+                </tr>
+                <tr style="height:20px;"></tr>
+                <tr>
+                    <td><label class="inputnum">商品组</label>
+                        <select id="classID" style="width:50%" class="form-control input-xsmall">
+								<option value="0">日用</option>
+								<option value="1">生鲜</option>
+							</select>
+                    </td>
+                    <td><label class="inputnum">数量</label><input class="form-control" type="text" style="width:170px;float:right;"></input>
+                    </td>
+                    <td><label class="inputnum">备注</label><input class="form-control" type="text" style="width:170px;"></input>
+                    </td>
+                </tr>
+                <!-- <tr style="height:20px;"></tr> -->
+                <tr style="height:20px;"></tr>
+                <tr>
+                    <td colspan="3">
+                        <a class="btn btn-success" style="width:60px;height:35px; margin-left:40%" onclick="add()">添加</a>
+                        <a class="btn btn-danger" style="width:60px;height:35px; margin-left:20px;" onclick="disaddsp()">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 介绍 第六部分 -->
+    <section id="welcome_section" class="hidden">
+        <div class="welcome_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <!-- About text start -->
+                            <div class="section-title">
+                                <h2>一号仓库</h2>
+                                <p>“藏”起你的心动.</p>
+                            </div>
+                            <!-- About text end -->
+                        </div>
+                        <!-- About service part start-->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                <div class="welcome_part wow fadeInLeft">
+                                    <div class="welcome_icon">
+                                        <i style="font-size:4em;" class="glyphicon glyphicon-asterisk"></i>
+                                    </div>
+                                    <h2>申请出/入库</h2>
+                                    <p>用户申请出/入库，提前录入商品信息，得到一个操作码</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                <div class="welcome_part wow fadeInUp">
+                                    <div class="welcome_icon">
+                                        <i style="font-size:4em;" class="glyphicon glyphicon-plus"></i>
+                                    </div>
+                                    <h2>生成出/入库码</h2>
+                                    <p>用户利用操作码，得到一个临时的出/入库码 </p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                <div class="welcome_part wow fadeInDown">
+                                    <div class="welcome_icon">
+                                        <i style="font-size:4em;" class="glyphicon glyphicon-minus"></i>
+                                    </div>
+                                    <h2>库存查询</h2>
+                                    <p>查询功能支持多种数据查询。 </p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                <div class="welcome_part wow fadeInRight">
+                                    <div class="welcome_icon">
+                                        <i style="font-size:4em;" class="glyphicon glyphicon-cloud"></i>
+                                    </div>
+                                    <h2>联系我们</h2>
+                                    <p>如果您有什么疑问，可以联系我们 </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- About service part end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="bbTable" class="hidden">
+        <div class="email_subscribe_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!-- Email Subscriber text start-->
+                        <div class="section-title">
+                            <h2>报表</h2>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=" email_subscribe_section" style="">
+            <div style="width:60%;margin:0 auto;">
+                <div id='canvasDiv'></div>
+                <div id='canvasDiv1'></div>
+                <div id='canvasDiv3'></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 联系我们 第七部分 -->
+    <section id="contact_section">
+        <div class="contact_section">
+            <div class="container">
+                <div class="row">
+
+                    <div class="row">
+                        <div class="section-title">
+                            <h2>联系我们</h2>
+                            <p>如果你有任何的问题，可以通过以下方式联系我们.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="address_part">
+                                <div class="address">
+                                    <i class="fa fa-map-marker"></i> <br/> <br/>
+                                </div>
+                                <div class="phone">
+                                    <i class="fa fa-phone"></i> 电话 #######
+                                </div>
+                                <div class="email">
+                                    <i class="fa fa-envelope-o"></i> 邮箱 #######
+                                </div>
+                                <div class="social_icons">
+                                    <ul>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" data-rel="tooltip" class="icon_fb"><i class="fa fa-facebook-square"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" data-rel="tooltip" class="icon_twitter"><i class="fa fa-twitter-square"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Google+" data-rel="tooltip" class="icon_gplus"><i class="fa fa-google-plus-square"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Linkdin" data-rel="tooltip" class="icon_linkdin"><i class="fa fa-linkedin-square"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Youtube" data-rel="tooltip" class="icon_youtube"><i class="fa fa-circle fa-youtube-square"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Vimeo" data-rel="tooltip" class="icon_vimeo"><i class="fa fa-vimeo-square"></i></a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="contact_form">
+                                <div id="show_contact_msg"></div>
+                                <!-- Contact Form Start -->
+
+                                <input type="text" id="contact_name" name="name" class="form-control contact_input_box wow fadeInUp" placeholder="姓名" required/>
+                                <input type="email" id="contact_email" name="email" class="form-control contact_input_box wow fadeInUp" placeholder="邮件" required/>
+                                <textarea id="contact_text" name="message" rows="5" cols="30" class="form-control contact_input_box wow fadeInUp" placeholder="信息" required></textarea>
+                                <button class="btn btn-primary contact_button wow fadeInUp"> <i class="fa fa-send-o"></i>  发送</button>
+
+                                <!-- Contact Form End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <!--左侧导航栏-->
+
+    <div id="nav_side" class="hidden">
+        <div id="nav_menu" style="overflow:hidden;width:112px;float:left;">
+            <div style="width:122px;">
+                <ul class="mainnav">
+                    <li style="background-color:gray;"><a id="btn1" class="btn btn-default " style="width:100%;" onclick="show_IOcode()" href="#IOcode">生成出入库码</a></li>
+                    <li style="background-color:gray;"><a id="btn2" class="btn btn-default" style="width:100%;" onclick="show_email_subscribe_section()" href="#email_subscribe_section">查询库存</a></li>
+                    <li style="background-color:gray;"><a id="btn3" class="btn btn-default" style="width:100%;" onclick="show_InOrOut()" href="#InOrOut">出/入库</a></li>
+                </ul>
+            </div>
+        </div>
+        <div onclick="sq_Or_zk()" style="float:left;height:101px; background-color:gray;">
+            <i id="" style="position:relative;top:40px;" class="glyphicon glyphicon-chevron-left"></i>
+        </div>
+
+    </div>
+
+
+    <!--Core js-->
+    <script src="js/jquery.min.js"></script>
+    <script src="css/bootstrap3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/jquery.smooth-scroll.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <!--common script init for all pages-->
+    <script src="js/script.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/my.js"></script>
+    <script type="text/javascript" src="js/ichart.1.2.min.js"></script>
+
+    <script type="text/javascript" src="js/city2.js"></script>
+    <script type="text/javascript" src="js/citySelect2.js"></script>
+
+
+
+
+    <!--下拉列表的级联-->
+    <script>
+        var selectVa2 = new CitySelect({
+            data: data,
+            provId: "#prov5",
+            cityId: '#city5',
+            areaId: '#area5',
+            isSelect: false
+        });
+
+        var selectVa3 = new CitySelect({
+            data: data,
+            provId: "#prov6",
+            cityId: '#city6',
+            areaId: '#area6',
+            isSelect: false
+        });
+    </script>
+
+
+
+</body>
+
+</html>
